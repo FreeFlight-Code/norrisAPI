@@ -1,0 +1,40 @@
+
+//set a border and background color
+@mixin button-color ($color: rgb(133, 132, 132)){
+	background-color: $color;
+	border: 2px solid darken($color, 15%);
+	text-shadow: 0 0  9px white;
+
+	&.glow:hover{
+		background-color: lighten($color, 10%);
+		box-shadow: 0px 0px 39px -8px $color;
+
+	}
+}
+
+button{
+	font-weight: 600;
+	text-transform: uppercase;
+	margin: 10px;
+    padding: 10px 24px;
+    border-radius: 7px;
+	border: 2px solid rgb(129, 129, 129);
+	transition: all .5s ease-in-out 100ms;
+	&:hover{
+		transform: scale(1.05);
+
+	}
+	&.float:hover{
+			box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.6),
+						0px 10px 15px -6px rgba(0,0,0, 0.5);
+	}
+	&.warning, &.red{
+		@include button-color($red);
+	}
+	&.success, &.green{
+		@include button-color($green);
+	}
+	&.info, &.blue{
+		@include button-color($blue);
+	}
+}

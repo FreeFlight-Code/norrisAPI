@@ -1,0 +1,20 @@
+$red: #d92626;
+$green: rgb(0, 139, 0);
+$black: rgb(34, 34, 34);
+$white: rgb(241, 241, 241);
+$blue: rgb(0, 146, 190);
+$primary-color: $blue;
+$secondary-color: darken($primary-color, 30%);
+
+
+.App{
+  font-size: 20px;
+  background-color: $white;
+  color: $primary-color;
+  // font-family: 'fantasy', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.text-red{
+  color: $red;
+}
