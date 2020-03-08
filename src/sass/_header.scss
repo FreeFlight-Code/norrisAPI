@@ -1,0 +1,30 @@
+$nav-text: white;
+
+header{
+	background-image: linear-gradient( rgb(110, 110, 110) 35%, black);
+	border-bottom: 2px solid black;
+	color: white;
+	justify-content: flex-end;
+    display: flex;
+	nav{
+		padding: 20px 50px 0;
+		display: inline-flex;
+		color: inherit;
+		a:last-of-type span{
+			border-right: none;
+		}
+		span{
+			padding: 5px 25px;
+			color: $nav-text;
+			border-right: 1px solid gray;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			&:hover{
+					background-color: rgba(255, 255, 240, 0.288);
+					color: darken($nav-text, 10%);
+
+			}
+
+		}
+	}
+}

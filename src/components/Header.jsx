@@ -10,14 +10,14 @@ class Header extends React.Component {
 
 	render() { 
 		return (
-      <header>
-        <nav>
-			<a href="/"><span>Home</span></a>
-			<a href="jokes"><span>Jokes</span></a>
-			<a href="categories"><span>Categories</span></a>
-			<a href="search"><span>Search</span></a>
-        </nav>
-      </header>
+			<header>
+				<nav>
+					<a href="/"><span>Home</span></a>
+					<a href="jokes"><span>Jokes</span></a>
+					<a href="categories"><span>Categories</span></a>
+					<a href="search"><span>Search</span></a>
+				</nav>
+			</header>
     );
 	}
 }

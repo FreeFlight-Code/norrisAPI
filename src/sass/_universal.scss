@@ -7,14 +7,20 @@ $primary-color: $blue;
 $secondary-color: darken($primary-color, 30%);
 
 
-.App{
+.ChuckNorrisApp{
   font-size: 20px;
   background-color: $white;
   color: $primary-color;
+  width: 100vw;
+  min-height: 100vh;
   // font-family: 'fantasy', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
 
-.text-red{
-  color: $red;
+a{
+  text-decoration: none;
+
+  &:active, &:focus, &:visited{
+    color: black;
+  }
 }
