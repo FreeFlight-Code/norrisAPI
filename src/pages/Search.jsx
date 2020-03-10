@@ -7,7 +7,7 @@ class Search extends Component {
     this.state = {};
   }
   render() {
-    return <div>Search page</div>;
+    return <div className="page search">Search page</div>;
   }
 }
 

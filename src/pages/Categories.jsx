@@ -7,9 +7,7 @@ class Categories extends Component {
 		this.state = {  }
 	}
 	render() { 
-		return ( 
-			<div>Categories page</div>
-		 );
+		return <div className="page categories">Categories page</div>;
 	}
 }
  

@@ -7,7 +7,7 @@ class Jokes extends Component {
     this.state = {};
   }
   render() {
-    return <div>Jokes Page</div>;
+    return <div className="page jokes">Jokes Page</div>;
   }
 }
 
