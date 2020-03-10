@@ -1,0 +1,14 @@
+.loginForm{
+	height: 70vh;
+	width: 90vw;
+	max-width: 500px;
+	background-color: rgb(235, 235, 235);
+	padding: 20px;
+	border-radius: .5rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: min-content;
+	grid-gap: 3px;
+	margin: 0 auto;
+	box-shadow: 10px 10px 50px -20px black;
+}

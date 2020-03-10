@@ -36,7 +36,6 @@ class Form extends React.Component {
 	handleInputChange(e) {
 		const { type, value } = e.target;
 		console.log(e.target.type, e.target.value);
-		let key = e.target.type;
 		this.setState({
 			[type]: value
 		});
@@ -45,34 +44,34 @@ class Form extends React.Component {
 	render() {
 	const { email, password } = this.state;	
 	return (
-		<form>
-		<label>Email</label>
-		<input
-			onChange={e => this.handleInputChange(e)}
-			// pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-			type="email"
-			name="email"
-			id="email"
-			value={email}
-		/>
-		<label>Password</label>
-		<input
-			onChange={e => this.handleInputChange(e)}
-			// pattern="(?=.{8,})"
-			type="password"
-			name="password"
-			id="password"
-			value={password}
-		/>
-		<input
-			onChange={_ => this.togglePasswordvisibility()}
-			type="checkbox"
-		/>
-		<input
-			onClick={e => this.handleSubmit(e)}
-			type="submit"
-			value="Submit"
-		/>
+		<form className="loginForm">
+			<label>Email</label>
+			<input
+				onChange={e => this.handleInputChange(e)}
+				// pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+				type="email"
+				name="email"
+				id="email"
+				value={email}
+			/>
+			<label>Password</label>
+			<input
+				onChange={e => this.handleInputChange(e)}
+				// pattern="(?=.{8,})"
+				type="password"
+				name="password"
+				id="password"
+				value={password}
+			/>
+			<input
+				onChange={_ => this.togglePasswordvisibility()}
+				type="checkbox"
+			/>
+			<input
+				onClick={e => this.handleSubmit(e)}
+				type="submit"
+				value="Submit"
+			/>
 		</form>
 	);
   }
