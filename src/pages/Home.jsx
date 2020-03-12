@@ -2,18 +2,13 @@ import React from 'react';
 import Form from '../components/Form';
 
 class Home extends React.Component {
-	constructor(props) {
-		super(props);
-
-	}
 
 	render() { 
-
-		console.log(this.state)
+		console.log(this.props, '  home')
 		return (
       <div>
         Home Page
-		<Form/>
+		<Form loginUser={this.props.loginUser}/>
       </div>
     );
 	}
