@@ -6,7 +6,8 @@ class Home extends React.Component {
 	render() { 
 		console.log(this.props, '  home')
 		return (
-      <div>
+
+      <div className="page home">
         Home Page
 		<Form loginUser={this.props.loginUser}/>
       </div>
