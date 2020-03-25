@@ -33,8 +33,14 @@
 			position: absolute;
 			right: 10px;
 			top: 3px;
-			&:hover [data-hover]{
-
+			&:hover::after{
+				content: "show/hide password";
+				width: 300px;
+				font-size: 10px;
+				color: rgb(116, 116, 116);
+				position: relative;
+				top: -12px;
+				left: -49px;
 			}
 		}
 	}
