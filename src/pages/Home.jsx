@@ -9,7 +9,7 @@ class Home extends React.Component {
 
       <div className="page home">
         Home Page
-		<Form loginUser={this.props.loginUser}/>
+		    <Form loginUser={this.props.loginUser}/>
       </div>
     );
 	}
