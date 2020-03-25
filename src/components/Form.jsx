@@ -54,7 +54,13 @@ class Form extends React.Component {
 				id="email"
 				value={email}
 			/>
-			<label>Password</label>
+			<span className="passwordContainer">
+				<label>Password</label>
+				<input
+					onChange={_ => this.togglePasswordvisibility()}
+					type="checkbox"
+				/>
+			</span>
 			<input
 				onChange={e => this.handleInputChange(e)}
 				// pattern="(?=.{8,})"
@@ -62,10 +68,6 @@ class Form extends React.Component {
 				name="password"
 				id="password"
 				value={password}
-			/>
-			<input
-				onChange={_ => this.togglePasswordvisibility()}
-				type="checkbox"
 			/>
 			<input
 				onClick={e => this.handleSubmit(e)}

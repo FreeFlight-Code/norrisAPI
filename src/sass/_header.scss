@@ -7,7 +7,7 @@ header{
 	justify-content: flex-end;
     display: flex;
 	nav{
-		padding: 20px 50px 0;
+		padding: 20px 5px 0 0;
 		display: inline-flex;
 		color: inherit;
 		a:last-of-type span{
@@ -21,7 +21,7 @@ header{
 			border-top-right-radius: 10px;
 			&:hover{
 					background-color: rgba(255, 255, 240, 0.288);
-					color: darken($nav-text, 10%);
+					color: darken($nav-text, 5%);
 
 			}
 
