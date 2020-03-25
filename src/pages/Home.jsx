@@ -9,7 +9,7 @@ class Home extends React.Component {
 		return (
 
       <div className="page home">
-        Home Page
+
 		<Form/>
       </div>
     );
