@@ -12,8 +12,11 @@ class Form extends React.Component {
 		this.togglePasswordvisibility = this.togglePasswordvisibility.bind(this);
 	}
 
+
+
 	validateEmailAndPassword(email, password) {
-		console.log(email, password);
+		//validation checks needed
+		return true
 	}
 
 	togglePasswordvisibility() {
@@ -28,9 +31,17 @@ class Form extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const { email, password } = this.state;
-		if (this.validateEmailAndPassword(email, password)) {
+		const user = {
+			email: email,
+			password: password
 		}
-	//send email and password
+		if (this.validateEmailAndPassword(email, password)) {
+			this.props.loginUser(user);
+			this.setState({
+				email: "",
+				password: ""
+			})
+		}
 	}
 
 	handleInputChange(e) {
@@ -43,6 +54,7 @@ class Form extends React.Component {
 
 	render() {
 	const { email, password } = this.state;	
+
 	return (
 		<form className="loginForm">
 			<label>Email</label>

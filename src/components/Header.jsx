@@ -1,17 +1,13 @@
 import React from 'react';
-// import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 class Header extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {  }
-	}
-
 
 	render() { 
+		const {loggedin} = this.props;
 		return (
 			<header>
 				<nav>
+					<span className="loggedin">{loggedin ? "Logged in" : "Not logged in"}</span>
 					<a href="/"><span>Home</span></a>
 					<a href="jokes"><span>Jokes</span></a>
 					<a href="categories"><span>Categories</span></a>

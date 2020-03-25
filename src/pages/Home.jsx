@@ -4,13 +4,12 @@ import Form from '../components/Form';
 class Home extends React.Component {
 
 	render() { 
-
-		console.log(this.state)
+		console.log(this.props, '  home')
 		return (
 
       <div className="page home">
-
-		<Form/>
+        Home Page
+		    <Form loginUser={this.props.loginUser}/>
       </div>
     );
 	}
