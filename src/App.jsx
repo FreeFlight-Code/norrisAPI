@@ -1,15 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Header from './components/Header'
-import Home from './pages/Home'
-import Categories from './pages/Categories'
-import Jokes from './pages/Jokes'
-import Search from './pages/Search'
+import ReactDOM from "react-dom";
+import Header from './components/Header';
+import Pages from './Pages';
 
 import './App.scss';
 
-export default class App extends React.PureComponent {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +25,9 @@ export default class App extends React.PureComponent {
         this.setState({
           loggedin: true
         })
+        window.location = "/search";
       }, 3000);
+
     }
   }
 
@@ -41,37 +39,14 @@ export default class App extends React.PureComponent {
   }
 
   render() {
+    // console.log(this.state.loggedin, '...am i logged in? App...')
     const {loggedin} = this.state;
 
     return (
       <div id="ChuckNorrisApp">
         <div id="modal"></div>
         <Header loggedin={loggedin} />
-
-        <Router>
-          {loggedin && (
-            <Switch>
-              <Route path="/categories">
-                <Categories />
-              </Route>
-              <Route path="/jokes">
-                <Jokes />
-              </Route>
-              <Route path="/search">
-                <Search />
-              </Route>
-            </Switch>
-          )}
-
-          <Switch>
-            <Route exact path="/">
-              <Home loginUser={this.loginUser} />
-            </Route>
-            <Route path="/">
-              <div>You must log in to see all content...</div>
-            </Route>
-          </Switch>
-        </Router>
+        <Pages loginUser = {this.loginUser}/>
       </div>
     );
   }
