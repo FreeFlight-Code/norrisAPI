@@ -9,7 +9,7 @@ import Search from './pages/Search'
 
 import './App.scss';
 
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,7 +68,7 @@ export default class App extends React.Component {
               <Home loginUser={this.loginUser} />
             </Route>
             <Route path="/">
-              <div>404 Page</div>
+              <div>You must log in to see all content...</div>
             </Route>
           </Switch>
         </Router>
@@ -86,6 +86,6 @@ function renderModal() {
   ReactDOM.render(element, document.getElementById("modal"));
 }
 function removeModal() {
-  const element = document.getElementById("loadingModal")
-  ReactDOM.unmountComponentAtNode(document.getElementById("modal"));
+  const element = document.getElementById("modal")
+  ReactDOM.unmountComponentAtNode(element);
 }
