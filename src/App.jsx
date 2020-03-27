@@ -16,30 +16,46 @@ export default class App extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
+
+  simulatedAuthenticationCall = new Promise((resolve, reject)=>{
+    //set resolve timeout less if you want auth call to succeed
+    setTimeout(() => {
+        resolve(true)
+    }, 6000);
+    setTimeout(() => {
+        reject("User information not valid")
+    }, 5000);
+  })
+
   loginUser(user) {
     // const {email, password} = user;
     this.toggleModal();
-    if (true) {
-      setTimeout(() => {
-        this.toggleModal();
-        this.setState({
-          loggedin: true
-        });
-        window.location = "/search";
-      }, 3000);
-    }
+
+
+    this.simulatedAuthenticationCall
+      .then(res=>{
+        if (res === true){
+          this.setState({
+            loggedin: true
+          });
+        }
+      })
+      .catch(err=>console.error("authentication failed... ", err))
+      .finally(_=>this.toggleModal())
   }
 
+
+
   toggleModal(type, message) {
+    console.log('toggle')
     const currentState = this.state.modal.show;
     this.setState({
-      modal: { 
+      modal: {
         show: !currentState,
         message: message ? message : "",
         type: type ? type : ""
       }
     });
-
   }
 
   render() {

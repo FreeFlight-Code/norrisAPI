@@ -46,7 +46,6 @@ class Form extends React.Component {
 
 	handleInputChange(e) {
 		const { type, value } = e.target;
-		console.log(e.target.type, e.target.value);
 		this.setState({
 			[type]: value
 		});
