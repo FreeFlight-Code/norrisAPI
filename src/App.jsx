@@ -1,91 +1,69 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Header from './components/Header'
-import Home from './pages/Home'
-import Categories from './pages/Categories'
-import Jokes from './pages/Jokes'
-import Search from './pages/Search'
+import React from "react";
+import Header from "./components/Header";
+import Modal from "./components/Modal";
+import Pages from "./pages/Pages";
 
-import './App.scss';
+import "./App.scss";
 
-export default class App extends React.PureComponent {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedin: false,
-      loading: false
+      modal: { show: false },
+      loggedin: false
     };
     this.loginUser = this.loginUser.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  loginUser(user){
-    const {email, password} = user;
-    renderModal();
-    if(true){
+  loginUser(user) {
+    // const {email, password} = user;
+    this.toggleModal();
+    if (true) {
       setTimeout(() => {
-        console.log(`your email is ${email} and your password is ${password}.`)
-        removeModal();
+        this.toggleModal();
         this.setState({
           loggedin: true
-        })
+        });
+        window.location = "/search";
       }, 3000);
     }
   }
 
-  toggleLoadingModal(){
-    const loading = this.state;
+  toggleModal(type, message) {
+    const currentState = this.state.modal.show;
     this.setState({
-      loading: !loading
-    })
+      modal: { 
+        show: !currentState,
+        message: message ? message : "",
+        type: type ? type : ""
+      }
+    });
+
   }
 
   render() {
-    const {loggedin} = this.state;
-
+    const { loggedin, modal } = this.state;
+    const { show } = this.state.modal;
     return (
       <div id="ChuckNorrisApp">
-        <div id="modal"></div>
+        {show && <Modal info={modal} close={this.toggleModal} />}
         <Header loggedin={loggedin} />
-
-        <Router>
-          {loggedin && (
-            <Switch>
-              <Route path="/categories">
-                <Categories />
-              </Route>
-              <Route path="/jokes">
-                <Jokes />
-              </Route>
-              <Route path="/search">
-                <Search />
-              </Route>
-            </Switch>
-          )}
-
-          <Switch>
-            <Route exact path="/">
-              <Home loginUser={this.loginUser} />
-            </Route>
-            <Route path="/">
-              <div>You must log in to see all content...</div>
-            </Route>
-          </Switch>
-        </Router>
+        <Pages toggleModal={this.toggleModal} loginUser={this.loginUser} />
       </div>
     );
   }
 }
- 
-function renderModal() {
-  const element = (
-    <div className="modal" id="loadingModal">
-      <h1>Loading...</h1>
-    </div>
-  );
-  ReactDOM.render(element, document.getElementById("modal"));
-}
-function removeModal() {
-  const element = document.getElementById("modal")
-  ReactDOM.unmountComponentAtNode(element);
-}
+
+// function renderModal() {
+//   const element = (
+//     <div className="modal" id="loadingModal">
+//       <h1>Loading...</h1>
+//     </div>
+//   );
+//   ReactDOM.render(element, document.getElementById("modal"));
+// }
+// function removeModal() {
+//   const element = document.getElementById("modal")
+//   ReactDOM.unmountComponentAtNode(element);
+// }

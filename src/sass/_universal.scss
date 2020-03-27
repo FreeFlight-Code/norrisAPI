@@ -44,7 +44,7 @@ input{
 .page{
   width: 100%;
   box-sizing: border-box;
-  height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
   background: linear-gradient(rgb(221, 220, 220) 10%, rgb(179, 178, 178));
   padding: 10vh 3vw;
 }
