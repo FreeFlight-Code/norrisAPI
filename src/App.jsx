@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       modal: { show: false },
-      loggedin: false
+      user: { loggedin: false }
     };
     this.loginUser = this.loginUser.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -24,19 +24,23 @@ export default class App extends React.Component {
     }, 6000);
     setTimeout(() => {
         reject("User information not valid")
-    }, 5000);
+    }, 7000);
   })
 
   loginUser(user) {
-    // const {email, password} = user;
+    let userObj = {
+      email: user.email,
+      password: user.password,
+      loggedin: this.state.user.loggedin
+    }
     this.toggleModal();
-
 
     this.simulatedAuthenticationCall
       .then(res=>{
         if (res === true){
+          userObj.loggedin = true
           this.setState({
-            loggedin: true
+            user: {...userObj}
           });
         }
       })
@@ -47,7 +51,6 @@ export default class App extends React.Component {
 
 
   toggleModal(type, message) {
-    console.log('toggle')
     const currentState = this.state.modal.show;
     this.setState({
       modal: {
@@ -59,8 +62,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { loggedin, modal } = this.state;
-    const { show } = this.state.modal;
+    const { modal } = this.state;
+    const { loggedin } = this.state.user;
+    const show = modal.show;
     return (
       <div id="ChuckNorrisApp">
         {show && <Modal info={modal} close={this.toggleModal} />}
@@ -70,16 +74,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-// function renderModal() {
-//   const element = (
-//     <div className="modal" id="loadingModal">
-//       <h1>Loading...</h1>
-//     </div>
-//   );
-//   ReactDOM.render(element, document.getElementById("modal"));
-// }
-// function removeModal() {
-//   const element = document.getElementById("modal")
-//   ReactDOM.unmountComponentAtNode(element);
-// }
