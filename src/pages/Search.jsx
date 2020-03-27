@@ -39,7 +39,6 @@ class Search extends Component {
     if(jokes && jokes.length > 0){
       return jokes.map((joke, i)=>{
         let shortJoke = this.truncJoke(joke.value, 50);
-        // console.log(joke, "...joke")
         return(
         <div onClick={e=>this.props.toggleModal("info", joke.value)} key={`joke-${i}`}>{shortJoke}</div>
         )

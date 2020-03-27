@@ -16,7 +16,6 @@ export default class App extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-
   simulatedAuthenticationCall = new Promise((resolve, reject)=>{
     //set resolve timeout less if you want auth call to succeed
     setTimeout(() => {
@@ -48,8 +47,6 @@ export default class App extends React.Component {
       .finally(_=>this.toggleModal())
   }
 
-
-
   toggleModal(type, message) {
     const currentState = this.state.modal.show;
     this.setState({
@@ -59,7 +56,7 @@ export default class App extends React.Component {
         type: type ? type : ""
       }
     });
-  }
+  } 
 
   render() {
     const { modal } = this.state;

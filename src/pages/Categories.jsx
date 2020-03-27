@@ -30,11 +30,10 @@ class Categories extends React.PureComponent {
       );
     });
   }
+
   getJoke(category) {
     if (category) {
-      fetch(
-        `https://api.chucknorris.io/jokes/random?category=${category}`
-      )
+      fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
         .then(res => res.json())
         .then(joke => {
           this.props.toggleModal("info", joke.value);
