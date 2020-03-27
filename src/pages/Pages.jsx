@@ -1,29 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import Categories from "./pages/Categories";
-import Jokes from "./pages/Jokes";
-import Search from "./pages/Search";
+import Home from "./Home";
+import Categories from "./Categories";
+import Jokes from "./Jokes";
+import Search from "./Search";
 
 export default class Routes extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
 
-    }
-  }
   render() {
     return (
       <Router>
         <Switch>
           <Route path="/categories">
-            <Categories />
+            <Categories toggleModal={this.props.toggleModal} />
           </Route>
           <Route path="/jokes">
-            <Jokes />
+            <Jokes toggleModal={this.props.toggleModal} />
           </Route>
           <Route path="/search">
-            <Search />
+            <Search toggleModal={this.props.toggleModal} />
           </Route>
           <Route exact path="/">
             <Home loginUser={this.props.loginUser} />

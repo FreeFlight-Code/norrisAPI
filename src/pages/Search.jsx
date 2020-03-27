@@ -11,7 +11,6 @@ class Search extends Component {
   }
 
   handleinputChange(val){
-    console.log(val)
     this.setState({
       searchTerm: val
     })
@@ -37,19 +36,18 @@ class Search extends Component {
 
   renderResults(){
     const {jokes} = this.state;
-    console.log(jokes)
     if(jokes && jokes.length > 0){
       return jokes.map((joke, i)=>{
-        joke = this.truncJoke(joke.value, 50);
+        let shortJoke = this.truncJoke(joke.value, 50);
+        // console.log(joke, "...joke")
         return(
-        <div key={`joke-${i}`}>{joke}</div>
+        <div onClick={e=>this.props.toggleModal("info", joke.value)} key={`joke-${i}`}>{shortJoke}</div>
         )
       })
     }
   }
 
   render() {
-    console.log(this.state.jokes)
     return (
       <div className="page search">
         <label htmlFor="searchBar">Search Bar</label>

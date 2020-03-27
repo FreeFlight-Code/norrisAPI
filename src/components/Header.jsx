@@ -3,7 +3,6 @@ import React from 'react';
 class Header extends React.Component {
 
 	render() { 
-		// const {loggedin} = this.props;
 		return (
       <header>
         <nav>
@@ -20,7 +19,7 @@ class Header extends React.Component {
             <span>Search</span>
           </a>
           {/* <span className="loggedin">{!loggedin ? "Log in" : "Log out"}</span> */}
-          <img style={{width: "50px"}} src="https://assets.chucknorris.host/img/avatar/chuck-norris.png"/>
+          <img alt="Chuck norris cartoon" style={{width: "50px"}} src="https://assets.chucknorris.host/img/avatar/chuck-norris.png"/>
         </nav>
       </header>
     );

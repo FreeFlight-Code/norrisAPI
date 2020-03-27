@@ -1,66 +1,69 @@
-import React from 'react';
-import ReactDOM from "react-dom";
-import Header from './components/Header';
-import Pages from './Pages';
+import React from "react";
+import Header from "./components/Header";
+import Modal from "./components/Modal";
+import Pages from "./pages/Pages";
 
-import './App.scss';
+import "./App.scss";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedin: false,
-      loading: false
+      modal: { show: false },
+      loggedin: false
     };
     this.loginUser = this.loginUser.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  loginUser(user){
-    const {email, password} = user;
-    renderModal();
-    if(true){
+  loginUser(user) {
+    // const {email, password} = user;
+    this.toggleModal();
+    if (true) {
       setTimeout(() => {
-        console.log(`your email is ${email} and your password is ${password}.`)
-        removeModal();
+        this.toggleModal();
         this.setState({
           loggedin: true
-        })
+        });
         window.location = "/search";
       }, 3000);
-
     }
   }
 
-  toggleLoadingModal(){
-    const loading = this.state;
+  toggleModal(type, message) {
+    const currentState = this.state.modal.show;
     this.setState({
-      loading: !loading
-    })
+      modal: { 
+        show: !currentState,
+        message: message ? message : "",
+        type: type ? type : ""
+      }
+    });
+
   }
 
   render() {
-    // console.log(this.state.loggedin, '...am i logged in? App...')
-    const {loggedin} = this.state;
-
+    const { loggedin, modal } = this.state;
+    const { show } = this.state.modal;
     return (
       <div id="ChuckNorrisApp">
-        <div id="modal"></div>
+        {show && <Modal info={modal} close={this.toggleModal} />}
         <Header loggedin={loggedin} />
-        <Pages loginUser = {this.loginUser}/>
+        <Pages toggleModal={this.toggleModal} loginUser={this.loginUser} />
       </div>
     );
   }
 }
- 
-function renderModal() {
-  const element = (
-    <div className="modal" id="loadingModal">
-      <h1>Loading...</h1>
-    </div>
-  );
-  ReactDOM.render(element, document.getElementById("modal"));
-}
-function removeModal() {
-  const element = document.getElementById("modal")
-  ReactDOM.unmountComponentAtNode(element);
-}
+
+// function renderModal() {
+//   const element = (
+//     <div className="modal" id="loadingModal">
+//       <h1>Loading...</h1>
+//     </div>
+//   );
+//   ReactDOM.render(element, document.getElementById("modal"));
+// }
+// function removeModal() {
+//   const element = document.getElementById("modal")
+//   ReactDOM.unmountComponentAtNode(element);
+// }

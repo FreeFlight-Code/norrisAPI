@@ -4,7 +4,6 @@ class Categories extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      currentJoke: "No Current Joke Selected.",
       categories: []
     };
   }
@@ -38,11 +37,9 @@ class Categories extends React.PureComponent {
       )
         .then(res => res.json())
         .then(joke => {
-          console.log(joke);
-          this.setState({ currentJoke: joke.value });
+          this.props.toggleModal("info", joke.value);
         });
     }
-    return this.state.currentJoke;
   }
 
   render() {
