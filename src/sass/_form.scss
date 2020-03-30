@@ -1,6 +1,5 @@
 .loginForm{
 	position: relative;
-	// height: 70vh;
 	box-sizing: border-box;
 	background-color: rgb(235, 235, 235);
 	padding: 20px 20px 60px;
@@ -9,22 +8,17 @@
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: min-content;
 	grid-gap: 20px 3px;
-	margin: 0 3vw;
+	margin: 45px 3vw 0;
 	box-shadow: 10px 10px 50px -20px black;
-	input[type="submit"]{
+	button{
 		grid-column: span 2;
 		width: 50%;
 		margin: 0 auto;
 		padding: 7px 14px;
-		background-color: rgb(83, 83, 83);
-		color: white;
-		&:hover{
-			background-color: rgb(99, 99, 99);
-		}
 	}
 	@media (min-width: 520px){
 		max-width: 490px;
-		margin: 0 auto;
+		margin: 45px auto 0;
 	}
 	.passwordContainer{
 		position: relative;

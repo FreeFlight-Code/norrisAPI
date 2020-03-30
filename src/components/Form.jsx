@@ -42,6 +42,7 @@ class Form extends React.Component {
 				password: ""
 			})
 		}
+		
 	}
 
 	handleInputChange(e) {
@@ -80,11 +81,12 @@ class Form extends React.Component {
 				id="password"
 				value={password}
 			/>
-			<input
+			<button
 				onClick={e => this.handleSubmit(e)}
-				type="submit"
-				value="Submit"
-			/>
+				className="blue"
+			>
+				Submit
+			</button>
 		</form>
 	);
   }

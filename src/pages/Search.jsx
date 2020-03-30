@@ -22,7 +22,6 @@ class Search extends Component {
       .then(res => res.json())
       .then(obj => {
         let jokesArray = obj.result;
-        console.log(jokesArray)
         this.setState({ 
           searchTerm: "",
           jokes: jokesArray
