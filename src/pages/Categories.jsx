@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 
 class Categories extends React.PureComponent {
   constructor(props) {
@@ -36,7 +37,11 @@ class Categories extends React.PureComponent {
       fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
         .then(res => res.json())
         .then(joke => {
-          this.props.toggleModal("info", joke.value);
+          this.props.dispatch({
+            type: "DISPLAY_MODAL",
+            message: joke.value,
+            messageType: "info"
+          });
         });
     }
   }
@@ -51,4 +56,4 @@ class Categories extends React.PureComponent {
   }
 }
 
-export default Categories;
+export default connect()(Categories);

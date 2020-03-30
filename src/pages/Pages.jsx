@@ -1,28 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import Home from "./Home";
 import Categories from "./Categories";
 import Jokes from "./Jokes";
 import Search from "./Search";
 
-export default class Routes extends React.Component {
+class Routes extends React.Component {
 
   render() {
+    const {loggedin} = this.props.user;
     return (
       <Router>
+        {loggedin && <Switch>
+          <Route component={Categories} path="/categories" />
+          <Route component={Jokes} path="/jokes" />
+          <Route component={Search} path="/search" />
+        </Switch>}
         <Switch>
-          <Route path="/categories">
-            <Categories toggleModal={this.props.toggleModal} />
-          </Route>
-          <Route path="/jokes">
-            <Jokes toggleModal={this.props.toggleModal} />
-          </Route>
-          <Route path="/search">
-            <Search toggleModal={this.props.toggleModal} />
-          </Route>
-          <Route exact path="/">
-            <Home loginUser={this.props.loginUser} />
-          </Route>
+          <Route component={Home} exact path="/" />
           <Route path="/">
             <div>404 sorry page not found</div>
           </Route>
@@ -31,3 +27,12 @@ export default class Routes extends React.Component {
     );
   }
 }
+ 
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Routes);

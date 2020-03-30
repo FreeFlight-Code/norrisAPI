@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {connect} from 'react-redux';
 
 class Search extends Component {
   constructor(props) {
@@ -38,9 +38,14 @@ class Search extends Component {
     if(jokes && jokes.length > 0){
       return jokes.map((joke, i)=>{
         let shortJoke = this.truncJoke(joke.value, 50);
-        return(
-        <div onClick={e=>this.props.toggleModal("info", joke.value)} key={`joke-${i}`}>{shortJoke}</div>
-        )
+        return (
+          <div
+            onClick={e => this.props.dispatch({ type: "DISPLAY_MODAL", message: joke.value, messageType: "info" })}
+            key={`joke-${i}`}
+          >
+            {shortJoke}
+          </div>
+        );
       })
     }
   }
@@ -60,4 +65,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect()(Search);
