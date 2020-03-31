@@ -1,31 +1,26 @@
 import React from "react";
+import {BrowserRouter as Router} from 'react-router-dom'
+//components
 import Header from "./components/Header";
 import Modal from "./components/Modal";
-import Pages from "./pages/Pages";
-
+import Routes from "./pages/Routes";
+// styling
 import "./App.scss";
-import { connect } from "react-redux";
 
 class App extends React.Component {
-
-
 
   render() {
 //Placed Modal before all other Pages/Components to prevent need for z-index in styling
     return (
       <div id="ChuckNorrisApp">
-        < Modal />
-        < Header />
-        < Pages />
+        <Router>
+          < Modal />
+          < Header />
+          < Routes />
+        </Router>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
-
-export default connect(mapStateToProps)(App)
+export default App

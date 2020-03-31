@@ -1,5 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+  useLocation
+} from "react-router-dom";
 
 
 class Header extends React.Component {
@@ -20,37 +28,51 @@ class Header extends React.Component {
   }
 
   render() {
-    // console.log(this.props, ' ...props-header')
     const { loggedin } = this.props.user;
     return (
       <header>
         <nav>
-          <a href="/">
-            <span>Home</span>
-          </a>
-          <a href="jokes">
-            <span>Jokes</span>
-          </a>
-          <a href="categories">
-            <span>Categories</span>
-          </a>
-          <a href="search">
-            <span>Search</span>
-          </a>
-          <button onClick={e => this.handleLogInOut()} className="loggedin green">
-            {loggedin ? "Logged In" : "Logged Out"}
-          </button>
-          <img
-            alt="Chuck norris cartoon"
-            style={{ width: "50px" }}
-            src="https://assets.chucknorris.host/img/avatar/chuck-norris.png"
-          />
+          <Navlinks />
         </nav>
+        <button onClick={e => this.handleLogInOut()} className="loggedin green">
+          {loggedin ? "Logged In" : "Logged Out"}
+        </button>
+        <img
+          alt="Chuck norris cartoon"
+          src="https://assets.chucknorris.host/img/avatar/chuck-norris.png"
+        />
       </header>
     );
   }
 }
- 
+
+function Navlinks (){
+  const array = [
+    {
+      link: "/",
+      label: "Home"
+    },
+    {
+      link: "/jokes",
+      label: "Jokes"
+    },
+    {
+      link: "/categories",
+      label: "Categories"
+    },
+    {
+      link: "/search",
+      label: "Search"
+    }
+  ];
+  return (
+    <>
+      {array.map((el, i)=>{
+        return <Link key={`nav-link-key-${i}`} to={el.link}>{el.label}</Link>;
+      })}
+    </>
+  )
+}
 
 const mapStateToProps = state => {
   return {
