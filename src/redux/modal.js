@@ -24,7 +24,7 @@ export const modalReducer = (state = defaultState, action) => {
       break;
     }
     default:
-      console.log("unknown input type to modalReducer... ", action.type);
+      // console.log("unknown input type to modalReducer... ", action.type);
       break;
   }
   return newState;

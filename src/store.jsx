@@ -1,4 +1,7 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers
+  , createStore
+  // , applyMiddleware
+ } from "redux";
 import { userReducer } from "./redux/user";
 import { modalReducer } from "./redux/modal";
 
@@ -7,26 +10,24 @@ const reducers = combineReducers({
   modal: modalReducer
 });
 
-const logger = store => next => action => {
-  console.log("action fired", action);
-  next(action);
-};
+// const logger = store => next => action => {
+//   console.log("action fired", action);
+//   next(action);
+// };
 
-const initialState = {
-  user: {}
-};
+// const initialState = {};
 
 export const store = createStore(
   reducers,
-  initialState,
-  applyMiddleware(logger)
+  // initialState,
+  // applyMiddleware(logger)
 );
 
 store.subscribe(() => {
   console.log("store changed", store.getState());
 });
 
-store.dispatch({ type: 'LOG_IN' })
+// store.dispatch({ type: 'LOG_IN' })
 // store.dispatch({ type: 'DISPLAY_MODAL', message: "Hello Wally World", messageType: "info"})
 // store.dispatch({ type: 'DISPLAY_MODAL' })
 

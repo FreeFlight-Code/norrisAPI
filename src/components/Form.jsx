@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Form extends React.Component {
 	constructor(props) {
@@ -31,16 +32,17 @@ class Form extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const { email, password } = this.state;
-		const user = {
-			email: email,
-			password: password
-		}
 		if (this.validateEmailAndPassword(email, password)) {
-			this.props.loginUser(user);
+			this.props.dispatch({type: "DISPLAY_MODAL"});
+			this.props.dispatch({type: "LOG_IN", password: password, email: email});
 			this.setState({
 				email: "",
 				password: ""
 			})
+			setTimeout(() => {
+				this.props.dispatch({ type: "REMOVE_MODAL" });
+
+			}, 3000);
 		}
 		
 	}
@@ -92,4 +94,4 @@ class Form extends React.Component {
   }
 }
  
-export default Form;
+export default connect()(Form);

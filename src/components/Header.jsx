@@ -9,12 +9,14 @@ class Header extends React.Component {
   }
 
   handleLogInOut(){
-    // const {loggedin} = this.props;
-    // if (loggedin){
-    //   //log out
-    // } else {
-    //   document.location = "/";
-    // }
+    const {dispatch} = this.props;
+    const {loggedin} = this.props.user;
+    if(loggedin){
+      document.location = "/";
+      dispatch({type: "LOG_OUT"});
+    }else{
+      dispatch({type: "DISPLAY_MODAL", message: "You are already logged out, Please Log in to view other Pages.", messageType: "info"})
+    }
   }
 
   render() {
@@ -35,7 +37,7 @@ class Header extends React.Component {
           <a href="search">
             <span>Search</span>
           </a>
-          <button onClick={e => this.handleLogInOut()} className="loggedin">
+          <button onClick={e => this.handleLogInOut()} className="loggedin green">
             {loggedin ? "Logged In" : "Logged Out"}
           </button>
           <img
