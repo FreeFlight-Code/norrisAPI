@@ -19,10 +19,10 @@ export const userReducer = (state = defaultState, action) => {
   switch (action.type) {
     case "LOG_IN": {
       simulatedAuthenticationCall
-        .then(()=>{
+        .then( () => {
           newState.loggedin = true;
         })
-        .catch((err)=>{
+        .catch( err => {
           console.error(err)
         })
       break;

@@ -20,9 +20,13 @@ class LoginForm extends React.Component {
   }
 
   validateEmailAndPassword = () => {
+	//   const emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$");
+	//   const passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{6,10}$");
+	  const emailRegex = new RegExp("asd");
+	  const passwordRegex = new RegExp("asd");
 		  const { email, password } = this.state;
 		  const submitButton = document.querySelector("button.submit");
-		  if (email && password) {
+		  if (emailRegex.test(email) && passwordRegex.test(password)) {
 			if (submitButton.className.indexOf("disabled") > 0) {
 			  submitButton.classList.remove("disabled");
 			}
@@ -45,18 +49,15 @@ class LoginForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    if (this.validateEmailAndPassword(email, password)) {
-      e.target.classList.toggle("disabled");
-      this.props.dispatch({ type: "DISPLAY_MODAL" });
-      this.props.dispatch({ type: "LOG_IN", password: password, email: email });
-      this.setState({
-        email: "",
-        password: ""
-      });
-      setTimeout(() => {
-        this.props.dispatch({ type: "REMOVE_MODAL" });
-      }, 3000);
-    }
+	this.props.dispatch({ type: "DISPLAY_MODAL" });
+	this.props.dispatch({ type: "LOG_IN", password: password, email: email });
+	this.setState({
+	email: "",
+	password: ""
+	});
+	setTimeout(() => {
+	this.props.dispatch({ type: "REMOVE_MODAL" });
+	}, 3000);
   }
 
   handleInputChange({type, value}) {
