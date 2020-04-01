@@ -2,47 +2,42 @@ import React from "react";
 import {
   Route,
   Switch,
-  Redirect,
   useLocation
 } from "react-router-dom";
+import { connect } from "react-redux";
+//components
 import Categories from './Categories';
 import Jokes from './Jokes';
 import Search from './Search';
 import Home from './Home';
 
-// You can use the last <Route> in a <Switch> as a kind of
-// "fallback" route, to catch 404 errors.
-//
-// There are a few useful things to note about this example:
-//
-// - A <Switch> renders the first child <Route> that matches
-// - A <Redirect> may be used to redirect old URLs to new ones
-// - A <Route path="*> always matches
-
-export default function Routes() {
+function Routes(props) {
+  const {loggedin} = props;
   return (
-
+    <>
+{ loggedin && //secured paths only
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
         <Route exact path="/categories">
           <Categories />
         </Route>
         <Route exact path="/jokes">
           <Jokes />
         </Route>
-        <Route exact path="/search">
+        <Route exact path="*">
           <Search />
         </Route>
-        <Route path="/asd">
-          <Redirect to="/" />
+      </Switch>}
+
+{!loggedin && // non-secured paths only
+      <Switch> 
+        <Route exact path="/">
+          <Home />
         </Route>
         <Route path="*">
           <NoMatch />
         </Route>
-      </Switch>
-
+      </Switch>}
+    </>
   );
 }
 
@@ -50,10 +45,19 @@ function NoMatch() {
   let location = useLocation();
 
   return (
-    <div>
+    <div className="page">
       <h3>
         No match for <code>{location.pathname}</code>
+      </h3>
+      <h3>
+        Please login to access secure routes or check your url.
       </h3>
     </div>
   );
 }
+
+const mapStateToProps = state =>({
+  loggedin: state.user.loggedin
+})
+
+export default connect(mapStateToProps)(Routes)

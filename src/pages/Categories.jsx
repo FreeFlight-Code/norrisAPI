@@ -37,9 +37,15 @@ class Categories extends React.PureComponent {
       fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
         .then(res => res.json())
         .then(joke => {
+          let tempJoke = joke;
+          tempJoke.viewed_at = new Date();
+          this.props.dispatch({
+            type: "ADD_JOKE_TO_HISTORY",
+            payload: tempJoke
+          });
           this.props.dispatch({
             type: "DISPLAY_MODAL",
-            message: joke.value,
+            message: tempJoke.value,
             messageType: "info"
           });
         });

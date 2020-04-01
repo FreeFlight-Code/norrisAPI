@@ -4,9 +4,11 @@ import { combineReducers
  } from "redux";
 import { userReducer } from "./redux/user";
 import { modalReducer } from "./redux/modal";
+import { jokeHistoryReducer } from "./redux/history";
 
 const reducers = combineReducers({
   user: userReducer,
+  history: jokeHistoryReducer,
   modal: modalReducer
 });
 

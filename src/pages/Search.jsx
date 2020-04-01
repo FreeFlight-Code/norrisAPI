@@ -33,6 +33,20 @@ class Search extends Component {
     return string.slice(0, charLimit + 1) + "..."
   }
 
+  handleJokeClick(joke){
+    let tempJoke = joke;
+    tempJoke.viewed_at = new Date();
+    this.props.dispatch({
+      type: "DISPLAY_MODAL",
+      message: tempJoke.value,
+      messageType: "info"
+    });
+    this.props.dispatch({
+      type: "ADD_JOKE_TO_HISTORY",
+      payload: tempJoke
+    });
+  }
+
   renderResults(){
     const {jokes} = this.state;
     if(jokes && jokes.length > 0){
@@ -40,7 +54,7 @@ class Search extends Component {
         let shortJoke = this.truncJoke(joke.value, 50);
         return (
           <div
-            onClick={e => this.props.dispatch({ type: "DISPLAY_MODAL", message: joke.value, messageType: "info" })}
+            onClick={e => this.handleJokeClick(joke)}
             key={`joke-${i}`}
           >
             {shortJoke}
