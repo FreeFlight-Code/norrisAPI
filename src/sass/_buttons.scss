@@ -22,11 +22,11 @@ button{
 	transition: all .5s ease-in-out 100ms;
 	&:hover{
 		transform: scale(1.05);
-
+		
 	}
 	&.float:hover{
-			box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.6),
-						0px 10px 15px -6px rgba(0,0,0, 0.5);
+		box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.6),
+		0px 10px 15px -6px rgba(0,0,0, 0.5);
 	}
 	&.warning, &.red{
 		@include button-color($red);
@@ -36,5 +36,14 @@ button{
 	}
 	&.info, &.blue{
 		@include button-color($blue);
+	}
+	&.disabled{
+	cursor: not-allowed;
+	background-color: unset;
+		&:hover, &.glow:hover{
+			background-color: unset;
+			transform: unset;
+			box-shadow: unset;
+		}
 	}
 }
