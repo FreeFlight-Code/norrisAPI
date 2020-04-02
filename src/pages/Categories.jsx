@@ -1,25 +1,14 @@
-import React from "react";
-import {connect} from 'react-redux';
-import {store} from '../store'
+import React, { useState, useEffect } from "react";
+import { getCategories, getRandomJoke } from "../js";
 
-class Categories extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: []
-    };
-  }
+function Categories () {
 
-  componentDidMount() {
-    fetch("https://api.chucknorris.io/jokes/categories")
-      .then(res => res.json())
-      .then(categories => this.setState({ categories: categories }));
-  }
+    const [categories, setCategories] = useState([]);
+    useEffect( () => {
+      getCategories()
+      .then(res=>setCategories(res));
+    }, []);
 
-
-
-  render() {
-    const { categories } = this.state;
     return (
       <div className="page categories">
         <div className="categoryList">
@@ -27,19 +16,16 @@ class Categories extends React.PureComponent {
         </div>
       </div>
     );
-  }
 }
 
-export default connect()(Categories);
+export default Categories;
 
 function CategoriesList({categories}) {
   return categories.map((category, i) => {
     return (
       <div
         className="category"
-        onClick={e => {
-          getJoke(category);
-        }}
+        onClick={ _ => getRandomJoke(category)}
         key={`category-${i}`}
       >
         {category}
@@ -47,21 +33,3 @@ function CategoriesList({categories}) {
     );
   });
 }
-
-function getJoke(category) {
-  fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
-    .then(res => res.json())
-    .then(joke => {
-      let tempJoke = joke;
-      tempJoke.viewed_at = new Date();
-      store.dispatch({
-        type: "ADD_JOKE_TO_HISTORY",
-        payload: tempJoke
-      });
-      store.dispatch({
-        type: "DISPLAY_MODAL",
-        message: tempJoke.value,
-        messageType: "info"
-      });
-    });
-  }
