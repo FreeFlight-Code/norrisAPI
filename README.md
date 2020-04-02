@@ -63,7 +63,7 @@ Requirements:
 *State Management
 *Create a new branch called state-management and checkout this branch.
 *Refactor your app to use state management (use Redux and a Redux Store, React Context or another state management option of your choice). You should at least have categories and viewed jokes *stored in this state Store.
-*If you choose to use Redux, create actions and reducers to correspond with your data model. If you have choosen a different state management option, set up you app to utilize the applicable *management options.
+*If you choose to use Redux, create actions and reducers to correspond with your data model. If you have choosen a different state management option, set up *you app to utilize the applicable *management options.
 *Use the Jokes page to display all of the jokes that the user has looked at or selected.
 
 *Create a way to display every joke that the user has view
@@ -74,10 +74,10 @@ Requirements:
 *Create a Pull Request (PR) for your code and merge it with the master branch. (Do not delete this branch.)
 *Refactor to Utilize Hooks
 *Create a new branch called hooks and checkout this branch.
-Choose one of your class components and convert the component into a functional component that utilizes hooks. If you have already written every component in the app as a functional component, convert one of the functional components into a class component that utilizes at least two React lifecycle methods.
+*Choose one of your class components and convert the component into a functional component that utilizes hooks. If you have already written every component *in the app as a functional component, convert one of the functional components into a class component that utilizes at least two React lifecycle methods.
 
-if you have already utilized a functional component in the app simply add a commment to identify your use of functional components as directed in the Finish Project section of this document.
-Make sure to utilize at least 3 hooks in your app. (eg: useState, useEffect, etc)
+*if you have already utilized a functional component in the app simply add a commment to identify your use of functional components as directed in the Finish *Project section of this document.
+*Make sure to utilize at least 3 hooks in your app. (eg: useState, useEffect, etc)
 
 Save your work and push these changes to Bitbucket.
 Create a Pull Request (PR) for your code and merge it with the master branch. (Do not delete this branch.)

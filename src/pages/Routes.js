@@ -11,7 +11,9 @@ import Jokes from './Jokes';
 import Search from './Search';
 import Home from './Home';
 
+//#functional component
 function Routes(props) {
+  //#destructuring
   const {loggedin} = props;
   return (
     <>
