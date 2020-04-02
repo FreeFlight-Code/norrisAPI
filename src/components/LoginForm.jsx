@@ -68,14 +68,12 @@ class LoginForm extends React.Component {
 
   render() {
     const { email, password } = this.state;
-    console.log(this.state);
 
     return (
       <form className="loginForm">
         <label>Email</label>
         <input
           onChange={e => this.handleInputChange(e.target)}
-        //   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}"
           type="email"
           name="email"
           id="email"
@@ -90,7 +88,6 @@ class LoginForm extends React.Component {
         </span>
         <input
           onChange={e => this.handleInputChange(e.target)}
-          // pattern="(?=.{8,})"
           type="password"
           name="password"
           id="password"
