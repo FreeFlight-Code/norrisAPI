@@ -1,54 +1,43 @@
-import React, { Component } from "react";
-import {connect} from 'react-redux';
+import React, { useState } from "react";
 import { handleJokeClick, truncString, getJokesBySearchTerm } from "../js";
 
+//#functional component
+function Search () {
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchTerm: "",
-      jokes: []
-    };
+  // #hooks #useState 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [jokes, setJokes] = useState([]);
+
+
+  function handleinputChange(val){
+    setSearchTerm(val)
   }
 
-  handleinputChange(val){
-    this.setState({
-      searchTerm: val
-    })
-  }
-
-  handleSubmit(){
-    const {searchTerm} = this.state;
+  function handleSubmit(){
     getJokesBySearchTerm(searchTerm)
     .then(
       obj => {
         let jokesArray = obj.result;
-        this.setState({
-          searchTerm: "",
-          jokes: jokesArray
-        });
+        setJokes(jokesArray)
     });
   }
 
-  render() {
-    const {jokes, searchTerm} = this.state;
-    return (
-      <div className="page search">
-        <label htmlFor="searchBar">Search Bar</label>
-        <input value={searchTerm} id="searchBar" type="text" onChange={e=>{this.handleinputChange(e.target.value)}} placeholder="Search Chuck Norris Joke by Key Word"></input>
-        <button className="blue" onClick={e=>{this.handleSubmit()}}>Submit</button>
-        <div className="results">
-          <h3>Results</h3>
-          < SearchResults jokes={jokes}/>
-        </div>
+  return (
+    <div className="page search">
+      <label htmlFor="searchBar">Search Bar</label>
+      <input value={searchTerm} id="searchBar" type="text" onChange={ e => handleinputChange(e.target.value) } placeholder="Search Chuck Norris Joke by Key Word"></input>
+      <button className="blue" onClick={ e => handleSubmit() }>Submit</button>
+      <div className="results">
+        <h3>Results</h3>
+        < SearchResults jokes={jokes}/>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default Search;
 
+//functional component
 function SearchResults({jokes}) {
   if (jokes && jokes.length > 0) {
     return jokes.map((joke, i) => {
