@@ -1,20 +1,15 @@
 import { store } from "../store";
+import { addJokeToHistory } from "../redux/history";
+import { displayModal } from "../redux/modal";
 
 export function handleJokeClick(joke) {
   let tempJoke = joke;
   tempJoke.viewed_at = new Date();
-  store.dispatch({
-    type: "DISPLAY_MODAL",
-    message: tempJoke.value,
-    messageType: "info"
-  });
-  store.dispatch({
-    type: "ADD_JOKE_TO_HISTORY",
-    payload: tempJoke
-  });
+  store.dispatch(displayModal( tempJoke.value ));
+  store.dispatch(addJokeToHistory( tempJoke ));
 }
 //
-export function truncJoke(string, charLimit) {
+export function truncString(string, charLimit) {
   return string.slice(0, charLimit + 1) + "...";
 }
 

@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { removeModal, displayModal } from "../redux/modal";
+import { login } from "../redux/user";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -8,10 +10,6 @@ class LoginForm extends React.Component {
       email: "",
       password: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.togglePasswordvisibility = this.togglePasswordvisibility.bind(this);
-    // this.validateEmailAndPassword = this.validateEmailAndPassword.bind(this);
     document.addEventListener("keyup", this.validateEmailAndPassword);
   }
 
@@ -37,7 +35,7 @@ class LoginForm extends React.Component {
     }
   };
 
-  togglePasswordvisibility() {
+  togglePasswordvisibility = () => {
     var x = document.getElementById("password");
     if (x.type === "password") {
       x.type = "text";
@@ -46,21 +44,22 @@ class LoginForm extends React.Component {
     }
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.dispatch({ type: "DISPLAY_MODAL" });
-    this.props.dispatch({ type: "LOG_IN", password: password, email: email });
+    const user = {email, password};
+    this.props.dispatch(displayModal());
+    this.props.dispatch(login(user));
     this.setState({
       email: "",
       password: ""
     });
     setTimeout(() => {
-      this.props.dispatch({ type: "REMOVE_MODAL" });
+      this.props.dispatch(removeModal());
     }, 3000);
   }
 
-  handleInputChange({ type, value }) {
+  handleInputChange = ({ type, value }) => {
     this.setState({
       [type]: value
     });

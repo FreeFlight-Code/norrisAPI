@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from '../redux/user';
+import { displayModal } from "../redux/modal";
 
 
 class Header extends React.PureComponent {
@@ -13,14 +15,9 @@ class Header extends React.PureComponent {
     const {loggedin} = this.props.user;
     if(loggedin){
       document.location = "/";
-      this.props.dispatch({ type: "LOG_OUT" });
+      this.props.dispatch(logout());
     }else{
-      this.props.dispatch({
-        type: "DISPLAY_MODAL",
-        message:
-          "You are already logged out, Please Log in to view other Pages.",
-        messageType: "info"
-      });
+      this.props.dispatch(displayModal("You are already logged out, Please Log in to view other Pages."));
     }
   }
 

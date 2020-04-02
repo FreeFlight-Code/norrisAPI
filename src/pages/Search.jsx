@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
-import { handleJokeClick, truncJoke, getJokesBySearchTerm } from "../js";
+import { handleJokeClick, truncString, getJokesBySearchTerm } from "../js";
 
 
 class Search extends Component {
@@ -47,12 +47,12 @@ class Search extends Component {
   }
 }
 
-export default connect()(Search);
+export default Search;
 
 function SearchResults({jokes}) {
   if (jokes && jokes.length > 0) {
     return jokes.map((joke, i) => {
-      let shortJoke = truncJoke(joke.value, 50);
+      let shortJoke = truncString(joke.value, 50);
       return (
         <div onClick={e => handleJokeClick(joke)} key={`joke-${i}`}>
           {shortJoke}

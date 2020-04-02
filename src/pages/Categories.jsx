@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getCategories, getRandomJoke } from "../js";
 
 function Categories () {
-
+//#hooks #useState #useEffect
     const [categories, setCategories] = useState([]);
     useEffect( () => {
       getCategories()
