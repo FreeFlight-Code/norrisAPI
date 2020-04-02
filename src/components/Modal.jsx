@@ -1,19 +1,31 @@
 import React from "react";
+import {connect} from 'react-redux';
 
 function Modal (props) {
+	// console.log(props, "...", this.props)
+	const {message, messageType, show} = props.modal;
 
-	const {message, type} = props.info;
-
-
-	return (
-		<div className="modal" onClick={e=>{props.close()}}>
-			<div className={type}>
-				{message ? message :
-				<img alt="animated loading gif" src="https://i.pinimg.com/originals/a2/dc/96/a2dc9668f2cf170fe3efeb263128b0e7.gif"/>
-				}
+	if(show){
+		return (
+			<div className="modal" onClick={e=>{props.dispatch({ type: "REMOVE_MODAL" });}}>
+				<div className={messageType}>
+					{message ? message :
+					<img alt="animated loading gif" src="https://i.pinimg.com/originals/a2/dc/96/a2dc9668f2cf170fe3efeb263128b0e7.gif"/>
+					}
+				</div>
 			</div>
-		</div>
-	);
+		);
+
+	} else {
+		return null
+	}
 }
 
-export default Modal;
+
+const mapStateToProps = state => {
+  return {
+    modal: state.modal
+  };
+};
+
+export default connect(mapStateToProps)(Modal);

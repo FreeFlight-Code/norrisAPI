@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from '../components/Form';
+import LoginForm from '../components/LoginForm';
 
 class Home extends React.PureComponent {
 
@@ -12,7 +12,7 @@ class Home extends React.PureComponent {
         <h4>Jokes Page allows you to see the jokes you have viewed.</h4>
         <h4>Categories Page allows you to view the categories of jokes</h4>
 		    <h4>Search Page allows you to search jokes by key word.</h4>
-        <Form loginUser={this.props.loginUser} />
+        <LoginForm loginUser={this.props.loginUser} />
       </div>
     );
 	}

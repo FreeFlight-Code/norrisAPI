@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {connect} from 'react-redux';
 
 class Search extends Component {
   constructor(props) {
@@ -22,7 +22,6 @@ class Search extends Component {
       .then(res => res.json())
       .then(obj => {
         let jokesArray = obj.result;
-        console.log(jokesArray)
         this.setState({ 
           searchTerm: "",
           jokes: jokesArray
@@ -34,15 +33,33 @@ class Search extends Component {
     return string.slice(0, charLimit + 1) + "..."
   }
 
+  handleJokeClick(joke){
+    let tempJoke = joke;
+    tempJoke.viewed_at = new Date();
+    this.props.dispatch({
+      type: "DISPLAY_MODAL",
+      message: tempJoke.value,
+      messageType: "info"
+    });
+    this.props.dispatch({
+      type: "ADD_JOKE_TO_HISTORY",
+      payload: tempJoke
+    });
+  }
+
   renderResults(){
     const {jokes} = this.state;
     if(jokes && jokes.length > 0){
       return jokes.map((joke, i)=>{
         let shortJoke = this.truncJoke(joke.value, 50);
-        // console.log(joke, "...joke")
-        return(
-        <div onClick={e=>this.props.toggleModal("info", joke.value)} key={`joke-${i}`}>{shortJoke}</div>
-        )
+        return (
+          <div
+            onClick={e => this.handleJokeClick(joke)}
+            key={`joke-${i}`}
+          >
+            {shortJoke}
+          </div>
+        );
       })
     }
   }
@@ -62,4 +79,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect()(Search);

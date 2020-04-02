@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 
 class Categories extends React.PureComponent {
   constructor(props) {
@@ -30,14 +31,23 @@ class Categories extends React.PureComponent {
       );
     });
   }
+
   getJoke(category) {
     if (category) {
-      fetch(
-        `https://api.chucknorris.io/jokes/random?category=${category}`
-      )
+      fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
         .then(res => res.json())
         .then(joke => {
-          this.props.toggleModal("info", joke.value);
+          let tempJoke = joke;
+          tempJoke.viewed_at = new Date();
+          this.props.dispatch({
+            type: "ADD_JOKE_TO_HISTORY",
+            payload: tempJoke
+          });
+          this.props.dispatch({
+            type: "DISPLAY_MODAL",
+            message: tempJoke.value,
+            messageType: "info"
+          });
         });
     }
   }
@@ -52,4 +62,4 @@ class Categories extends React.PureComponent {
   }
 }
 
-export default Categories;
+export default connect()(Categories);
