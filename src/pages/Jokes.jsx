@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { sort } from "../js";
 
 class JokesPage extends React.Component {
   constructor(props) {
@@ -16,60 +17,28 @@ class JokesPage extends React.Component {
     });
   }
 
-  //sort history on redux - default (only 1 param) sorts alphabetically and numerically, reverse does in reverse order
-  sort = (param, reverse) => {
-    let newList = this.props.history;
-    if (reverse === 1 || reverse === "reverse") {
-      newList.sort((a, b) => {
-        if (a[param] < b[param]) {
-          return 1;
-        }
-        if (a[param] > b[param]) {
-          return -1;
-        }
-        return 0;
-      });
-    } else {
-      newList.sort((a, b) => {
-        if (a[param] > b[param]) {
-          return 1;
-        }
-        if (a[param] < b[param]) {
-          return -1;
-        }
-        return 0;
-      });
-    }
+  //sort history on redux - (only 1 param) sorts alphabetically or numerically by the arrays key, reverse does in reverse order
+  handleSort(key, reverse) {
+    //#Curried Function
+    const sortedArray = sort(this.props.history)(key, reverse);
     this.setState({
-      history: newList
+      history: sortedArray
     });
-  };
+  }
 
   render() {
     const { history } = this.state;
     return (
       <div className="page jokes">
         <div className="filters">
-          <span
-            onClick={e => {
-              this.sort("categories");
-            }}
-          >
+          <span onClick={e => this.handleSort("categories")}>
             By Category
           </span>
-          <span
-            onClick={e => {
-              this.sort("viewed_at");
-            }}
-          >
+          <span onClick={e => this.handleSort("viewed_at", "reverse")}>
             Most Recent
           </span>
-          <span
-            onClick={e => {
-              this.sort("viewed_at", "reverse");
-            }}
-          >
-            Least Recent
+          <span onClick={e => this.handleSort("viewed_at")}>
+            First Viewed
           </span>
         </div>
         <h3>All jokes viewed</h3>

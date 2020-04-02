@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from '../redux/user';
+import { displayModal } from "../redux/modal";
 
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleLogInOut = this.handleLogInOut.bind(this);
   }
 
   handleLogInOut(){
-    const {dispatch} = this.props;
     const {loggedin} = this.props.user;
     if(loggedin){
       document.location = "/";
-      dispatch({type: "LOG_OUT"});
+      this.props.dispatch(logout());
     }else{
-      dispatch({type: "DISPLAY_MODAL", message: "You are already logged out, Please Log in to view other Pages.", messageType: "info"})
+      this.props.dispatch(displayModal("You are already logged out, Please Log in to view other Pages."));
     }
   }
 
@@ -38,6 +39,14 @@ class Header extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Header);
 
 function Navlinks (){
   const array = [
@@ -67,10 +76,3 @@ function Navlinks (){
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
-
-export default connect(mapStateToProps)(Header);

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
+import { handleJokeClick, truncString, getJokesBySearchTerm } from "../js";
+
 
 class Search extends Component {
   constructor(props) {
@@ -18,65 +20,44 @@ class Search extends Component {
 
   handleSubmit(){
     const {searchTerm} = this.state;
-    fetch(`https://api.chucknorris.io/jokes/search?query=${searchTerm}`)
-      .then(res => res.json())
-      .then(obj => {
+    getJokesBySearchTerm(searchTerm)
+    .then(
+      obj => {
         let jokesArray = obj.result;
-        this.setState({ 
+        this.setState({
           searchTerm: "",
           jokes: jokesArray
-        })
-      });
-  }
-
-  truncJoke(string, charLimit){
-    return string.slice(0, charLimit + 1) + "..."
-  }
-
-  handleJokeClick(joke){
-    let tempJoke = joke;
-    tempJoke.viewed_at = new Date();
-    this.props.dispatch({
-      type: "DISPLAY_MODAL",
-      message: tempJoke.value,
-      messageType: "info"
+        });
     });
-    this.props.dispatch({
-      type: "ADD_JOKE_TO_HISTORY",
-      payload: tempJoke
-    });
-  }
-
-  renderResults(){
-    const {jokes} = this.state;
-    if(jokes && jokes.length > 0){
-      return jokes.map((joke, i)=>{
-        let shortJoke = this.truncJoke(joke.value, 50);
-        return (
-          <div
-            onClick={e => this.handleJokeClick(joke)}
-            key={`joke-${i}`}
-          >
-            {shortJoke}
-          </div>
-        );
-      })
-    }
   }
 
   render() {
+    const {jokes, searchTerm} = this.state;
     return (
       <div className="page search">
         <label htmlFor="searchBar">Search Bar</label>
-        <input value={this.state.searchTerm} id="searchBar" type="text" onChange={e=>{this.handleinputChange(e.target.value)}} placeholder="Search Chuck Norris Joke by Key Word"></input>
+        <input value={searchTerm} id="searchBar" type="text" onChange={e=>{this.handleinputChange(e.target.value)}} placeholder="Search Chuck Norris Joke by Key Word"></input>
         <button className="blue" onClick={e=>{this.handleSubmit()}}>Submit</button>
         <div className="results">
           <h3>Results</h3>
-          {this.renderResults()}
+          < SearchResults jokes={jokes}/>
         </div>
       </div>
     )
   }
 }
 
-export default connect()(Search);
+export default Search;
+
+function SearchResults({jokes}) {
+  if (jokes && jokes.length > 0) {
+    return jokes.map((joke, i) => {
+      let shortJoke = truncString(joke.value, 50);
+      return (
+        <div onClick={e => handleJokeClick(joke)} key={`joke-${i}`}>
+          {shortJoke}
+        </div>
+      );
+    });
+  } else return null;
+}
