@@ -43,7 +43,7 @@ export const userReducer = (state = defaultState, action) => {
   return newState;
 };
 
-
+//#promises
 const simulatedAuthenticationCall = new Promise((resolve, reject) => {
   //set resolve timeout less if you want auth call to succeed
   setTimeout(() => {

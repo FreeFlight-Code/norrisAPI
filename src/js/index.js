@@ -5,8 +5,8 @@ import { displayModal } from "../redux/modal";
 export function handleJokeClick(joke) {
   let tempJoke = joke;
   tempJoke.viewed_at = new Date();
-  store.dispatch(displayModal( tempJoke.value ));
-  store.dispatch(addJokeToHistory( tempJoke ));
+  store.dispatch(displayModal(tempJoke.value));
+  store.dispatch(addJokeToHistory(tempJoke));
 }
 //
 export function truncString(string, charLimit) {
@@ -30,8 +30,10 @@ export function getRandomJoke(category) {
 }
 //#Curried function
 export const sort = array => (key, reverse) => {
+  //#Blocked-scoped variable let
   let newList = array;
   if (reverse === 1 || reverse === "reverse") {
+    //#Array Functions - sort
     newList.sort((a, b) => {
       if (a[key] < b[key]) {
         return 1;

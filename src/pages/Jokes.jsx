@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { sort } from "../js";
 
 class JokesPage extends React.Component {
+  //#props
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +11,7 @@ class JokesPage extends React.Component {
     };
   }
 
+  //#lifecycle method
   componentDidMount() {
     const { history } = this.props;
     this.setState({
@@ -53,6 +55,7 @@ class JokesPage extends React.Component {
   }
 }
 // list of jokes
+//#props for function
 function List(props) {
   const { history } = props;
   if (history && history.length)
@@ -62,6 +65,7 @@ function List(props) {
 // individual jokes
 function Joke({value, categories, viewed_at}) {
   const category = categories[0] || "";
+  //#date
   viewed_at = new Date(viewed_at).toLocaleTimeString();
   return (
     <div className="joke">
@@ -71,7 +75,7 @@ function Joke({value, categories, viewed_at}) {
     </div>
   );
 }
-//adds history to props
+//adds redux history to #props
 const mapStateToProps = state => ({
   history: state.history
 });

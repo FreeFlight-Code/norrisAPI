@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getCategories, getRandomJoke } from "../js";
 
+//#functional component
 function Categories () {
 //#hooks #useState #useEffect
     const [categories, setCategories] = useState([]);
@@ -21,7 +22,9 @@ function Categories () {
 export default Categories;
 
 function CategoriesList({categories}) {
+  //#map
   return categories.map((category, i) => {
+    //#JSX returned
     return (
       <div
         className="category"

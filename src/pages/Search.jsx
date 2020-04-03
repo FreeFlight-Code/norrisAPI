@@ -23,9 +23,11 @@ function Search () {
   }
 
   return (
-    <div className="page search">
+    // 
+    <div style={style.searchPage}className="page search">
       <label htmlFor="searchBar">Search Bar</label>
-      <input value={searchTerm} id="searchBar" type="text" onChange={ e => handleinputChange(e.target.value) } placeholder="Search Chuck Norris Joke by Key Word"></input>
+      {/* #styles type 1 - inline */}
+      <input style={{padding: "10px 15px"}} value={searchTerm} id="searchBar" type="text" onChange={ e => handleinputChange(e.target.value) } placeholder="Search Chuck Norris Joke by Key Word"></input>
       <button className="blue" onClick={ e => handleSubmit() }>Submit</button>
       <div className="results">
         <h3>Results</h3>
@@ -50,3 +52,11 @@ function SearchResults({jokes}) {
     });
   } else return null;
 }
+
+//#style type 2 - style names will be camelCased rather than with '-' dashes (i.e. backgroundColor rather than background-color)
+const style = {
+  searchPage: {
+    padding: "10vh 3vw",
+    background: "linear-gradient(#dddcdc 10%, #b3b2b2)"
+  }
+};

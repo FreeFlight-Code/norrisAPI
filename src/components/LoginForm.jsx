@@ -3,20 +3,23 @@ import { connect } from "react-redux";
 import { removeModal, displayModal } from "../redux/modal";
 import { login } from "../redux/user";
 
+//#class components
 class LoginForm extends React.Component {
+  //#props
   constructor(props) {
     super(props);
+    //#state
     this.state = {
       email: "",
       password: ""
     };
     document.addEventListener("keyup", this.validateEmailAndPassword);
   }
-
-  componentWillUnmount() {
+  //#lifecycle method
+  componentWillUnmount () {
     document.removeEventListener("keyup", this.validateEmailAndPassword);
   }
-
+  //#arrow function / fat arrow
   validateEmailAndPassword = () => {
     const emailRegex = new RegExp(
       "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
@@ -54,11 +57,12 @@ class LoginForm extends React.Component {
       email: "",
       password: ""
     });
+    //#settimeout #closure
     setTimeout(() => {
       this.props.dispatch(removeModal());
     }, 3000);
   }
-
+  //#destructuring
   handleInputChange = ({ type, value }) => {
     this.setState({
       [type]: value
@@ -66,6 +70,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    //#block scoped variable const
     const { email, password } = this.state;
 
     return (
@@ -102,5 +107,5 @@ class LoginForm extends React.Component {
     );
   }
 }
-
+//#currying curried function
 export default connect()(LoginForm);

@@ -68,6 +68,8 @@ function Navlinks (){
     }
   ];
   return (
+    //#Lists and keys - using keys to create a unique identifier for react to identify components
+    //This returns a list of links from the above array
     <>
       {array.map((el, i)=>{
         return <Link key={`nav-link-key-${i}`} to={el.link}>{el.label}</Link>;
