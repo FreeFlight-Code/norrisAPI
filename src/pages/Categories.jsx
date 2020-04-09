@@ -7,7 +7,7 @@ function Categories () {
     const [categories, setCategories] = useState([]);
     useEffect( () => {
       getCategories()
-      .then(res=>setCategories(res));
+      .then( res => setCategories(res));
     }, []);
 
     return (

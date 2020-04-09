@@ -13,13 +13,9 @@ function Search () {
     setSearchTerm(val)
   }
 
-  function handleSubmit(){
-    getJokesBySearchTerm(searchTerm)
-    .then(
-      obj => {
-        let jokesArray = obj.result;
-        setJokes(jokesArray)
-    });
+  async function handleSubmit(){
+    const jokesArray = await getJokesBySearchTerm(searchTerm);
+      setJokes(jokesArray);
   }
 
   return (
