@@ -7,32 +7,34 @@ export function handleJokeClick(joke) {
   tempJoke.viewed_at = new Date();
   store.dispatch(displayModal(tempJoke.value));
   store.dispatch(addJokeToHistory(tempJoke));
+  return tempJoke;
 }
 //
 export function truncString(string, charLimit) {
-  return string.slice(0, charLimit + 1) + "...";
+  return string.slice(0, charLimit - 3) + "...";
 }
 
 export const getJokesBySearchTerm = searchTerm => {
   return fetch(
     `https://api.chucknorris.io/jokes/search?query=${searchTerm}`
-  ).then(res => res.json());
+  ).then(res => res.json())
+  .then(res=>res.result);
 };
 export const getCategories = _ => {
-  return fetch(`https://api.chucknorris.io/jokes/categories`).then(res =>
-    res.json()
-  );
+  return fetch(`https://api.chucknorris.io/jokes/categories`)
+    .then((res) => res.json())
+    .then((res) => res);
 };
 export function getRandomJoke(category) {
-  fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
+  return fetch(`https://api.chucknorris.io/jokes/random?category=${category}`)
     .then(res => res.json())
-    .then(joke => handleJokeClick(joke));
+    .then(joke => {handleJokeClick(joke); return joke});
 }
 //#Curried function
 export const sort = array => (key, reverse) => {
   //#Blocked-scoped variable let
-  let newList = array;
-  if (reverse === 1 || reverse === "reverse") {
+  let newList = [...array];
+  if (reverse > 0 || reverse === "reverse" || reverse === "reversed"){
     //#Array Functions - sort
     newList.sort((a, b) => {
       if (a[key] < b[key]) {
