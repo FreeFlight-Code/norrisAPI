@@ -4,7 +4,7 @@ import {
   getJokesBySearchTerm,
   getCategories,
   getRandomJoke,
-  sort,
+  sort
 } from "../../js";
 
 describe("Checks common js functions", () => {

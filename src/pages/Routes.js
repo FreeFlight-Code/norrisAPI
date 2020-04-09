@@ -8,7 +8,7 @@ import Search from "./Search";
 import Home from "./Home";
 
 //#functional component
-function Routes(props) {
+export function Routes(props) {
   //#destructuring #Blocked-scoped variable const
   const { loggedin } = props;
   return (
@@ -42,7 +42,7 @@ function Routes(props) {
   );
 }
 
-function NoMatch() {
+export function NoMatch() {
   let location = useLocation();
 
   return (

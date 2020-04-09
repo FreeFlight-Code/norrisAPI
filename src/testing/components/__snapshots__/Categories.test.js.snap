@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Categories without error 1`] = `
+<div
+  className="page categories"
+>
+  <div
+    className="categoryList"
+  />
+</div>
+`;

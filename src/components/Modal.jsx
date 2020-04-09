@@ -2,8 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {removeModal} from '../redux/modal';
 
-function Modal (props) {
-	// console.log(props, "...", this.props)
+export function Modal (props) {
 	const {message, messageType, show} = props.modal;
 
 	if(show){

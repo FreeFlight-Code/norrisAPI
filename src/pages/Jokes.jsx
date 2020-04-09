@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { sort } from "../js";
 
-class JokesPage extends React.Component {
+export class JokesPage extends React.Component {
   //#props
   constructor(props) {
     super(props);
@@ -56,14 +56,14 @@ class JokesPage extends React.Component {
 }
 // list of jokes
 //#props for function
-function List(props) {
+export function List(props) {
   const { history } = props;
   if (history && history.length)
     return history.map((el, i) => <Joke {...el} key={`joke-history-${i}`} />);
   else return null;
 }
 // individual jokes
-function Joke({value, categories, viewed_at}) {
+export function Joke({value, categories, viewed_at}) {
   const category = categories[0] || "";
   //#date
   viewed_at = new Date(viewed_at).toLocaleTimeString();

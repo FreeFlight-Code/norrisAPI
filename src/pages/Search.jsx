@@ -36,7 +36,7 @@ function Search () {
 export default Search;
 
 //functional component
-function SearchResults({jokes}) {
+export function SearchResults({jokes}) {
   if (jokes && jokes.length > 0) {
     return jokes.map((joke, i) => {
       let shortJoke = truncString(joke.value, 50);

@@ -31,7 +31,8 @@ export function getRandomJoke(category) {
 }
 //#Curried function
 export const sort = array => (key, reverse) => {
-  //#Blocked-scoped variable let
+  //#Blocked-scoped variable let 
+  //#destructure
   let newList = [...array];
   if (reverse > 0 || reverse === "reverse" || reverse === "reversed"){
     //#Array Functions - sort

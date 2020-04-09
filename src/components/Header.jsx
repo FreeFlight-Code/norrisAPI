@@ -5,7 +5,7 @@ import { logout } from '../redux/user';
 import { displayModal } from "../redux/modal";
 
 
-class Header extends React.PureComponent {
+export class Header extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleLogInOut = this.handleLogInOut.bind(this);

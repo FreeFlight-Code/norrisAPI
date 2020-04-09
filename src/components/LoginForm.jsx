@@ -4,7 +4,7 @@ import { removeModal, displayModal } from "../redux/modal";
 import { login } from "../redux/user";
 
 //#class components
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
   //#props
   constructor(props) {
     super(props);
