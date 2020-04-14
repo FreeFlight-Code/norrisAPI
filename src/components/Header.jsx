@@ -40,7 +40,7 @@ export class Header extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     user: state.user
   };
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(Header);
 
-function Navlinks (){
+export function Navlinks (){
   const array = [
     {
       link: "/",

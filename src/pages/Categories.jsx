@@ -21,7 +21,7 @@ function Categories () {
 
 export default Categories;
 
-function CategoriesList({categories}) {
+export function CategoriesList({categories}) {
   //#map
   return categories.map((category, i) => {
     //#JSX returned

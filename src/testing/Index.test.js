@@ -11,19 +11,17 @@ const App = ()=>{
 	return <div>Hello World</div>
 }
 
-test("can render with redux with defaults", () => {
+test("can render redux with defaults", () => {
   render(<App />);
-//   fireEvent.click(screen.getByText("+"));
-//   expect(screen.getByTestId("count-value")).toHaveTextContent("1");
 });
 
-test("can render with redux with custom initial state", () => {
+test("can render redux with custom initial state", () => {
   render(<App />, {
     initialState: { count: 3 },
   });
 });
 
-test("can render with redux with custom store", () => {
+test("can render redux with custom store", () => {
   // this is a silly store that can never be changed
   const customStore = createStore(() => ({ count: 1000 }));
   render(<App />, {

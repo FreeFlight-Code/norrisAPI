@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` The Jokes Page...  joke renders correctly 1`] = `
+<div
+  className="joke"
+>
+  <span>
+    what up
+  </span>
+  <span
+    className="category"
+  >
+    turtle
+  </span>
+  <span>
+    1:30:00 AM
+  </span>
+</div>
+`;
+
+exports[` The Jokes Page...  list renders correctly 1`] = `
+Array [
+  <div
+    className="joke"
+  >
+    <span>
+      what up
+    </span>
+    <span
+      className="category"
+    >
+      turtle
+    </span>
+    <span>
+      1:30:00 AM
+    </span>
+  </div>,
+  <div
+    className="joke"
+  >
+    <span>
+      always smile
+    </span>
+    <span
+      className="category"
+    >
+      apple
+    </span>
+    <span>
+      2:30:00 PM
+    </span>
+  </div>,
+  <div
+    className="joke"
+  >
+    <span>
+      COVID-19
+    </span>
+    <span
+      className="category"
+    >
+      water
+    </span>
+    <span>
+      10:30:00 AM
+    </span>
+  </div>,
+  <div
+    className="joke"
+  >
+    <span>
+      peace on earth
+    </span>
+    <span
+      className="category"
+    >
+      giraffe
+    </span>
+    <span>
+      4:30:00 AM
+    </span>
+  </div>,
+  <div
+    className="joke"
+  >
+    <span>
+      whello world
+    </span>
+    <span
+      className="category"
+    >
+      bear
+    </span>
+    <span>
+      2:30:00 AM
+    </span>
+  </div>,
+]
+`;
+
+exports[` The Jokes Page...  page renders correctly 1`] = `
+<div
+  className="page jokes"
+>
+  <div
+    className="filters"
+  >
+    <span
+      onClick={[Function]}
+    >
+      By Category
+    </span>
+    <span
+      onClick={[Function]}
+    >
+      Most Recent
+    </span>
+    <span
+      onClick={[Function]}
+    >
+      First Viewed
+    </span>
+  </div>
+  <h3>
+    All jokes viewed
+  </h3>
+  <div
+    className="joke"
+  >
+    <span>
+      Joke
+    </span>
+    <span
+      className="category"
+    >
+      Category
+    </span>
+    <span>
+      Time
+    </span>
+  </div>
+</div>
+`;

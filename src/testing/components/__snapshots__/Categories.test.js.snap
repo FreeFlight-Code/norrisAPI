@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Categories without error 1`] = `
+exports[`renders Categories categories without error 1`] = `
 <div
   className="page categories"
 >
@@ -8,4 +8,33 @@ exports[`renders Categories without error 1`] = `
     className="categoryList"
   />
 </div>
+`;
+
+exports[`renders Categories categorieslist without error 1`] = `
+Array [
+  <div
+    className="category"
+    onClick={[Function]}
+  >
+    time
+  </div>,
+  <div
+    className="category"
+    onClick={[Function]}
+  >
+    hello
+  </div>,
+  <div
+    className="category"
+    onClick={[Function]}
+  >
+    react
+  </div>,
+  <div
+    className="category"
+    onClick={[Function]}
+  >
+    japan
+  </div>,
+]
 `;

@@ -1,11 +1,17 @@
 import React from 'react';
-import Categories from '../../pages/Categories';
+import Categories, { CategoriesList } from '../../pages/Categories';
 import renderer from 'react-test-renderer';
 
 describe("renders Categories", ()=>{
-	it('without error', () => {
-	const tree = renderer
+	it('categories without error', () => {
+		const tree = renderer
 		.create( < Categories /> ).toJSON();
-	expect(tree).toMatchSnapshot();
+		expect(tree).toMatchSnapshot();
+	})
+	it('categorieslist without error', () => {
+		const categories = ['time', 'hello', 'react', 'japan']
+		const tree = renderer
+		.create( < CategoriesList categories={categories}/> ).toJSON();
+		expect(tree).toMatchSnapshot();
 	})
 });
