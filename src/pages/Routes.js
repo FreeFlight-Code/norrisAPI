@@ -11,6 +11,7 @@ import Home from "./Home";
 export function Routes(props) {
   //#destructuring #Blocked-scoped variable const
   const { loggedin } = props;
+  const location = useLocation();
   return (
     <>
       {/* #routes React routing */}
@@ -34,7 +35,7 @@ export function Routes(props) {
             <Home />
           </Route>
           <Route path="*">
-            <NoMatch />
+            <NoMatch location={location.pathname}/>
           </Route>
         </Switch>
       )}
@@ -42,13 +43,13 @@ export function Routes(props) {
   );
 }
 
-export function NoMatch() {
-  let location = useLocation();
+export function NoMatch({location}) {
+  // let currentLocation = useLocation().pathname || "unknown url";
 
   return (
     <div className="page">
       <h3>
-        No match for <code>{location.pathname}</code>
+        No match for <code>{location}</code>
       </h3>
       <h3>Please login to access secure routes or check your url.</h3>
     </div>

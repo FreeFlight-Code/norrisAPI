@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` The Search Page...  Results renders correctly 1`] = `null`;
+
+exports[` The Search Page...  renders correctly 1`] = `
+<div
+  className="page search"
+  style={
+    Object {
+      "background": "linear-gradient(#dddcdc 10%, #b3b2b2)",
+      "padding": "10vh 3vw",
+    }
+  }
+>
+  <label
+    htmlFor="searchBar"
+  >
+    Search Bar
+  </label>
+  <input
+    id="searchBar"
+    onChange={[Function]}
+    placeholder="Search Chuck Norris Joke by Key Word"
+    style={
+      Object {
+        "padding": "10px 15px",
+      }
+    }
+    type="text"
+    value=""
+  />
+  <button
+    className="blue"
+    onClick={[Function]}
+  >
+    Submit
+  </button>
+  <div
+    className="results"
+  >
+    <h3>
+      Results
+    </h3>
+  </div>
+</div>
+`;
