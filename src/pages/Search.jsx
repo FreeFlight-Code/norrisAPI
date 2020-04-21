@@ -19,18 +19,32 @@ function Search () {
   }
 
   return (
-    // 
-    <div style={style.searchPage}className="page search">
+    //
+    <div style={style.searchPage} className="page search">
       <label htmlFor="searchBar">Search Bar</label>
       {/* #styles type 1 - inline */}
-      <input style={{padding: "10px 15px"}} value={searchTerm} id="searchBar" type="text" onChange={ e => handleinputChange(e.target.value) } placeholder="Search Chuck Norris Joke by Key Word"></input>
-      <button className="blue" onClick={ e => handleSubmit() }>Submit</button>
+      <input
+        data-testid="search-input"
+        style={{ padding: "10px 15px" }}
+        value={searchTerm}
+        id="searchBar"
+        type="text"
+        onChange={(e) => handleinputChange(e.target.value)}
+        placeholder="Search Chuck Norris Joke by Key Word"
+      ></input>
+      <button
+        data-testid="submit-input"
+        className="blue"
+        onClick={(e) => handleSubmit()}
+      >
+        Submit
+      </button>
       <div className="results">
         <h3>Results</h3>
-        < SearchResults jokes={jokes}/>
+        <SearchResults jokes={jokes} />
       </div>
     </div>
-  )
+  );
 }
 
 export default Search;

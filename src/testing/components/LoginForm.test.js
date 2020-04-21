@@ -2,18 +2,7 @@ import React from 'react';
 import {LoginForm} from '../../components/LoginForm';
 import { cleanup, render, fireEvent } from '@testing-library/react';
 
-
-
 afterEach(cleanup);
-
-const setup = () => {
-  const utils = render(<LoginForm />);
-  const passInput = utils.getByLabelText("cost-input");
-  return {
-    input,
-    ...utils,
-  };
-};
 
 describe (' Login Form ', () => {
 	it(' matches snapshot ', () => {

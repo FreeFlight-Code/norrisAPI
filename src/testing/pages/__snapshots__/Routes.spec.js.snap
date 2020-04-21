@@ -16,6 +16,7 @@ exports[` Routes Page   renders secure routes    renders home/login page  1`] = 
     Search Bar
   </label>
   <input
+    data-testid="search-input"
     id="searchBar"
     onChange={[Function]}
     placeholder="Search Chuck Norris Joke by Key Word"
@@ -29,6 +30,7 @@ exports[` Routes Page   renders secure routes    renders home/login page  1`] = 
   />
   <button
     className="blue"
+    data-testid="submit-input"
     onClick={[Function]}
   >
     Submit
