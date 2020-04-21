@@ -79,13 +79,13 @@ Requirements:
 *if you have already utilized a functional component in the app simply add a commment to identify your use of functional components as directed in the Finish *Project section of this document.
 *Make sure to utilize at least 3 hooks in your app. (eg: useState, useEffect, etc)
 
-Save your work and push these changes to Bitbucket.
-Create a Pull Request (PR) for your code and merge it with the master branch. (Do not delete this branch.)
-Testing
-If you have not been adding tests as you were developing the previous features, then add tests now.
+*Save your work and push these changes to Bitbucket.
+*Create a Pull Request (PR) for your code and merge it with the master branch. (Do not delete this branch.)
+*Testing
+*If you have not been adding tests as you were developing the previous features, then add tests now.
 
-Create a new branch called testing and checkout this branch.
-You will add unit tests to your project. Some examples may include:
+*Create a new branch called testing and checkout this branch.
+*You will add unit tests to your project. Some examples may include:
 
 Test routing component works correctly
 Test that the http requests are configured correctly
@@ -97,49 +97,49 @@ Make sure to document where the test coverage report is stored. You may also wan
 Save your work and push these changes to Bitbucket.
 Create a Pull Request (PR) for your code and merge it with the master branch. (Do not delete this branch.)
 Finish Project
-(If you have not already added the comments below to your project, create a comments branch)
-Inside of this branch you will add comments to your code to demonstrate your use and knowledge of Javascript fundamentals as well as React basics. This should not be hard, but it will help us recognize your knowledge and use of ES6+ basics. You do not need to identify every instance, just 1-2 instances to show you know and understand these concepts.
-Comments should be preceded with a # and should look something like this:
-  // #closure
-  function myClosure() = {...}
-or this:
+*(If you have not already added the comments below to your project, create a comments branch)
+*Inside of this branch you will add comments to your code to demonstrate your use and knowledge of Javascript fundamentals as well as React basics. This *should not be hard, but it will help us recognize your knowledge and use of ES6+ basics. You do not need to identify every instance, just 1-2 instances to *show you know and understand these concepts.
+*Comments should be preceded with a # and should look something like this:
+*  // #closure
+*  function myClosure() = {...}
+*or this:
+*
+*  /* #map function */
+*  myArray.map(...);
+*In your code you should add comments to demonstrate these Javascript fundamentals:
 
-  /* #map function */
-  myArray.map(...);
-In your code you should add comments to demonstrate these Javascript fundamentals:
+*Closures
+*this keyword
+*Arrow functions
+*Array Functions
 
-Closures
-this keyword
-Arrow functions
-Array Functions
+*Map
+*Filter
+*Reduce
+*Destructuring
 
-Map
-Filter
-Reduce
-Destructuring
+*Spread Operator
+*Promises
+*Blocked-scoped variable let
+*Blocked-scoped variable const
+*In your code you should add comments to demonstrate these React basics:
 
-Spread Operator
-Promises
-Blocked-scoped variable let
-Blocked-scoped variable const
-In your code you should add comments to demonstrate these React basics:
+*JSX
+*Rendering Elements
+*Class Components
+*Functional Components
+*Lifecycle methods (at least 3 different methods should be commented in your class component(s))
+*React Hooks (at least 3 different hooks should be commented in your functional component(s))
+*Event Handling
+*Props
+*State
+*Lists & Keys
+*Routing
+*Redux Reducers, React Context (or other state management)
+*Styles (2-3 different methods of applying styles to React components)
+*Comments should be styled similar to the Javascript comments.
 
-JSX
-Rendering Elements
-Class Components
-Functional Components
-Lifecycle methods (at least 3 different methods should be commented in your class component(s))
-React Hooks (at least 3 different hooks should be commented in your functional component(s))
-Event Handling
-Props
-State
-Lists & Keys
-Routing
-Redux Reducers, React Context (or other state management)
-Styles (2-3 different methods of applying styles to React components)
-Comments should be styled similar to the Javascript comments.
-
-Create a basic.md file. In this file list each item that you do not have in your app from the above Javascript and React basics. For each item, write a short code snippet and explanation of the item to demonstrate your understanding of it. In addition, choose 4 hooks (that are not used or identified in your app) and write a short code snippet and expalanation of its use.
-Finally, make sure to remove all console.log statements and unused commented code from your project.
+*Create a basic.md file. In this file list each item that you do not have in your app from the above Javascript and React basics. For each item, write a *short code snippet and explanation of the item to demonstrate your understanding of it. In addition, choose 4 hooks (that are not used or identified in your *app) and write a short code snippet and expalanation of its use.
+*Finally, make sure to remove all console.log statements and unused commented code from your project.
 Push and merge the commented code to your Master branch. (Do not delete this branch.)
 Email your practice manager that you have completed the certification project and that it is now ready for a final review!

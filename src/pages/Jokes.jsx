@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { sort } from "../js";
 
-class JokesPage extends React.Component {
+export class JokesPage extends React.Component {
+  //#props
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +11,7 @@ class JokesPage extends React.Component {
     };
   }
 
+  //#lifecycle method
   componentDidMount() {
     const { history } = this.props;
     this.setState({
@@ -53,25 +55,28 @@ class JokesPage extends React.Component {
   }
 }
 // list of jokes
-function List(props) {
-  const { history } = props;
+//#props for function
+export function List({history}) {
   if (history && history.length)
     return history.map((el, i) => <Joke {...el} key={`joke-history-${i}`} />);
   else return null;
 }
 // individual jokes
-function Joke({value, categories, viewed_at}) {
-  const category = categories[0] || "";
+export function Joke({value, categories, viewed_at}) {
+  const category = categories.length ? categories[0] : "";
+  //#date
   viewed_at = new Date(viewed_at).toLocaleTimeString();
-  return (
-    <div className="joke">
-      <span>{value}</span>
-      <span className="category">{category}</span>
-      <span>{viewed_at}</span>
-    </div>
-  );
+  if (value){
+    return (
+      <div className="joke">
+        <span>{value}</span>
+        <span className="category">{category}</span>
+        <span>{viewed_at}</span>
+      </div>
+    );
+  } else return null;
 }
-//adds history to props
+//adds redux history to #props
 const mapStateToProps = state => ({
   history: state.history
 });

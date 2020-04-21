@@ -5,7 +5,7 @@ import { logout } from '../redux/user';
 import { displayModal } from "../redux/modal";
 
 
-class Header extends React.PureComponent {
+export class Header extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleLogInOut = this.handleLogInOut.bind(this);
@@ -40,7 +40,7 @@ class Header extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     user: state.user
   };
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(Header);
 
-function Navlinks (){
+export function Navlinks (){
   const array = [
     {
       link: "/",
@@ -68,6 +68,8 @@ function Navlinks (){
     }
   ];
   return (
+    //#Lists and keys - using keys to create a unique identifier for react to identify components
+    //This returns a list of links from the above array
     <>
       {array.map((el, i)=>{
         return <Link key={`nav-link-key-${i}`} to={el.link}>{el.label}</Link>;

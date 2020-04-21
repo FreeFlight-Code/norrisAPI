@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` Header component   can render Navlinks menu from array provided  1`] = `null`;
+
+exports[` Header component  can render Header - snapshot match 1`] = `
+<header>
+  <nav />
+  <button
+    className="loggedin green"
+    onClick={[Function]}
+  >
+    Logged In
+  </button>
+  <img
+    alt="Chuck norris cartoon"
+    src="https://assets.chucknorris.host/img/avatar/chuck-norris.png"
+  />
+</header>
+`;

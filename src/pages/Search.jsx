@@ -13,32 +13,44 @@ function Search () {
     setSearchTerm(val)
   }
 
-  function handleSubmit(){
-    getJokesBySearchTerm(searchTerm)
-    .then(
-      obj => {
-        let jokesArray = obj.result;
-        setJokes(jokesArray)
-    });
+  async function handleSubmit(){
+    const jokesArray = await getJokesBySearchTerm(searchTerm);
+      setJokes(jokesArray);
   }
 
   return (
-    <div className="page search">
+    //
+    <div style={style.searchPage} className="page search">
       <label htmlFor="searchBar">Search Bar</label>
-      <input value={searchTerm} id="searchBar" type="text" onChange={ e => handleinputChange(e.target.value) } placeholder="Search Chuck Norris Joke by Key Word"></input>
-      <button className="blue" onClick={ e => handleSubmit() }>Submit</button>
+      {/* #styles type 1 - inline */}
+      <input
+        data-testid="search-input"
+        style={{ padding: "10px 15px" }}
+        value={searchTerm}
+        id="searchBar"
+        type="text"
+        onChange={(e) => handleinputChange(e.target.value)}
+        placeholder="Search Chuck Norris Joke by Key Word"
+      ></input>
+      <button
+        data-testid="submit-input"
+        className="blue"
+        onClick={(e) => handleSubmit()}
+      >
+        Submit
+      </button>
       <div className="results">
         <h3>Results</h3>
-        < SearchResults jokes={jokes}/>
+        <SearchResults jokes={jokes} />
       </div>
     </div>
-  )
+  );
 }
 
 export default Search;
 
 //functional component
-function SearchResults({jokes}) {
+export function SearchResults({jokes}) {
   if (jokes && jokes.length > 0) {
     return jokes.map((joke, i) => {
       let shortJoke = truncString(joke.value, 50);
@@ -50,3 +62,11 @@ function SearchResults({jokes}) {
     });
   } else return null;
 }
+
+//#style type 2 - style names will be camelCased rather than with '-' dashes (i.e. backgroundColor rather than background-color)
+const style = {
+  searchPage: {
+    padding: "10vh 3vw",
+    background: "linear-gradient(#dddcdc 10%, #b3b2b2)"
+  }
+};

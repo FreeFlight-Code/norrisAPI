@@ -2,10 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { removeModal, displayModal } from "../redux/modal";
 import { login } from "../redux/user";
+import {simulatedAuthenticationCall} from '../js'
 
-class LoginForm extends React.Component {
+//#class components
+export class LoginForm extends React.Component {
+  //#props
   constructor(props) {
     super(props);
+    //#state
     this.state = {
       email: "",
       password: ""
@@ -13,10 +17,11 @@ class LoginForm extends React.Component {
     document.addEventListener("keyup", this.validateEmailAndPassword);
   }
 
-  componentWillUnmount() {
+  //#lifecycle method
+  componentWillUnmount () {
     document.removeEventListener("keyup", this.validateEmailAndPassword);
   }
-
+  //#arrow function / fat arrow
   validateEmailAndPassword = () => {
     const emailRegex = new RegExp(
       "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
@@ -25,13 +30,16 @@ class LoginForm extends React.Component {
     const { email, password } = this.state;
     const submitButton = document.querySelector("button.submit");
     if (emailRegex.test(email) && passwordRegex.test(password)) {
+
       if (submitButton.className.indexOf("disabled") > 0) {
         submitButton.classList.remove("disabled");
       }
+      return true;
     } else {
       if (submitButton.className.indexOf("disabled") < 0) {
         submitButton.classList.add("disabled");
       }
+      return false;
     }
   };
 
@@ -46,19 +54,26 @@ class LoginForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const {login, removeModal, displayModal} = this.props;
     const { email, password } = this.state;
     const user = {email, password};
-    this.props.dispatch(displayModal());
-    this.props.dispatch(login(user));
-    this.setState({
-      email: "",
-      password: ""
-    });
-    setTimeout(() => {
-      this.props.dispatch(removeModal());
-    }, 3000);
+    if(this.validateEmailAndPassword()){
+      displayModal();
+      this.setState({
+        email: "",
+        password: "",
+      });
+      simulatedAuthenticationCall(user)
+        .then( user =>{
+          login(user);
+        })
+        .catch(err=>console.log(err))
+        .finally(res=>{
+          removeModal();
+        })
+    }
   }
-
+  //#destructuring
   handleInputChange = ({ type, value }) => {
     this.setState({
       [type]: value
@@ -66,34 +81,38 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    //#block scoped variable const
     const { email, password } = this.state;
 
     return (
       <form className="loginForm">
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input
-          onChange={e => this.handleInputChange(e.target)}
+          data-testid="email-input"
+          onChange={(e) => this.handleInputChange(e.target)}
           type="email"
           name="email"
           id="email"
           value={email}
         />
         <span className="passwordContainer">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            onChange={_ => this.togglePasswordvisibility()}
+            onChange={(_) => this.togglePasswordvisibility()}
             type="checkbox"
           />
         </span>
         <input
-          onChange={e => this.handleInputChange(e.target)}
+          data-testid="password-input"
+          onChange={(e) => this.handleInputChange(e.target)}
           type="password"
           name="password"
           id="password"
           value={password}
         />
         <button
-          onClick={e => this.handleSubmit(e)}
+          data-testid="submit-input"
+          onClick={(e) => this.handleSubmit(e)}
           className="submit blue glow disabled"
         >
           Submit
@@ -102,5 +121,13 @@ class LoginForm extends React.Component {
     );
   }
 }
+//#currying curried function
+const mapDispatchToProps = dispatch => {
 
-export default connect()(LoginForm);
+  return {
+    login: user => dispatch(login(user)),
+    removeModal: _ => dispatch(removeModal()),
+    displayModal: _ => dispatch(displayModal())
+  }
+}
+export default connect(null, mapDispatchToProps)(LoginForm);
