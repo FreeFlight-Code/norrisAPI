@@ -1,12 +1,11 @@
-import React from 'react';
-import App from '../App';
-import renderer from 'react-test-renderer';
+import React from "react";
+import App from "../App";
 
-jest.mock('react-router-dom')
+import { render } from "./test-utils";
+import "@testing-library/jest-dom/extend-expect";
 
-describe('the App component',()=>{
-	it("matches snapshot", () => {
-    const tree = renderer.create(<App />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-})
+
+test("App matches snapshot", () => {
+  const tree = render(<App />);
+  expect(tree).toMatchSnapshot();
+});

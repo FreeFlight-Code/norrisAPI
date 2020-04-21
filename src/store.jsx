@@ -1,6 +1,6 @@
-import { combineReducers
-  , createStore
-  // , applyMiddleware
+import { 
+  combineReducers,
+  createStore
  } from "redux";
 import {userReducer} from "./redux/user";
 import {modalReducer} from "./redux/modal";
@@ -12,20 +12,6 @@ export const reducers = combineReducers({
   modal: modalReducer
 });
 
-//logs all actions dispatched
-// const logger = store => next => action => {
-//   console.log("action fired", action);
-//   next(action);
-// };
-
 export const store = createStore(
-  reducers,
-  // applyMiddleware(logger)
+  reducers
 );
-
-
-//logs all updates to state
-// store.subscribe(() => {
-//   console.log("store changed", store.getState());
-// });
-

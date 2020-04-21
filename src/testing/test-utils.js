@@ -1,22 +1,25 @@
-// test-utils.js
 import React from "react";
 import { render as rtlRender } from "@testing-library/react";
 import { store as testStore} from "../store";
 import { Provider } from "react-redux";
-// import { initialState as reducerInitialState } from "./reducer";
-
-const reducerInitialState = {};
+import {BrowserRouter as Router} from 'react-router-dom'
 
 function render(
   ui,
   {
-    initialState = reducerInitialState,
+    initialState = {},
     store = testStore,
     ...renderOptions
   } = {}
 ) {
   function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <Provider store={store}>
+        <Router>
+          {children}
+        </Router>
+      </Provider>
+    );
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
