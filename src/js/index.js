@@ -58,3 +58,16 @@ export const sort = array => (key, reverse) => {
   }
   return newList;
 };
+export function simulatedAuthenticationCall (user) {
+  return new Promise((resolve, reject) => {
+    //set resolve timeout less if you want auth call to succeed
+    if (user === "test"){
+      setTimeout(() => {
+        reject({message: "User information not valid"});
+      }, 1000);
+    }
+    setTimeout(() => {
+      resolve(user);
+    }, 2000);
+  })
+};

@@ -23,13 +23,7 @@ export const userReducer = (state = defaultState, action) => {
   let newState = {...state};
   switch (action.type) {
     case LOG_IN: {
-      simulatedAuthenticationCall
-        .then(() => {
-          newState.loggedin = true;
-        })
-        .catch(err => {
-          console.error(err);
-        })
+      newState.loggedin = true;
       break;
     }
     case LOG_OUT: {
@@ -44,12 +38,4 @@ export const userReducer = (state = defaultState, action) => {
 };
 
 //#promises
-const simulatedAuthenticationCall = new Promise((resolve, reject) => {
-  //set resolve timeout less if you want auth call to succeed
-  setTimeout(() => {
-    resolve(true);
-  }, 1000);
-  setTimeout(() => {
-    reject("User information not valid");
-  }, 2000);
-});
+

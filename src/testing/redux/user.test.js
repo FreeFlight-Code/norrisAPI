@@ -28,15 +28,11 @@ describe(" userReducer should return correct state  ", () => {
 	  payload: user
     };
     let state = {
-		loggedin: false,
-		email: "",
-		password: ""
+		loggedin: false
     };
     const response = userReducer(state, action);
     expect(response).toEqual({
-      loggedin: false,
-      email: "",
-      password: "",
+      loggedin: true
     });
   });
   it(" userReducer should return correct state for logout", () => {

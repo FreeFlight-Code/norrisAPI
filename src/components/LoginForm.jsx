@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { removeModal } from "../redux/modal";
+import { removeModal, displayModal } from "../redux/modal";
 import { login } from "../redux/user";
+import {simulatedAuthenticationCall} from '../js'
 
 //#class components
 export class LoginForm extends React.Component {
@@ -53,19 +54,23 @@ export class LoginForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const {login, removeModal} = this.props;
+    const {login, removeModal, displayModal} = this.props;
     const { email, password } = this.state;
     const user = {email, password};
     if(this.validateEmailAndPassword()){
-      login(user);
+      displayModal();
       this.setState({
         email: "",
-        password: ""
+        password: "",
       });
-      //#settimeout #closure
-      setTimeout(() => {
-        removeModal();
-      }, 3000);
+      simulatedAuthenticationCall(user)
+        .then( user =>{
+          login(user);
+        })
+        .catch(err=>console.log(err))
+        .finally(res=>{
+          removeModal();
+        })
     }
   }
   //#destructuring
@@ -76,7 +81,6 @@ export class LoginForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     //#block scoped variable const
     const { email, password } = this.state;
 
@@ -122,7 +126,8 @@ const mapDispatchToProps = dispatch => {
 
   return {
     login: user => dispatch(login(user)),
-    removeModal: _ => dispatch(removeModal())
+    removeModal: _ => dispatch(removeModal()),
+    displayModal: _ => dispatch(displayModal())
   }
 }
 export default connect(null, mapDispatchToProps)(LoginForm);

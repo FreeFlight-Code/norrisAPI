@@ -4,7 +4,8 @@ import {
   getJokesBySearchTerm,
   getCategories,
   getRandomJoke,
-  sort
+  sort,
+  simulatedAuthenticationCall
 } from "../../js";
 
 describe("Checks common js functions", () => {
@@ -111,12 +112,14 @@ describe("Checks common js functions", () => {
     it("sorts value alphabetically", () => {
       const array1 = [
         { simpleProperty: "a" },
+        { simpleProperty: "a" },
         { simpleProperty: "b" },
         { simpleProperty: "c" }
       ];
       const array2 = [
         { simpleProperty: "c" },
         { simpleProperty: "b" },
+        { simpleProperty: "a" },
         { simpleProperty: "a" }
       ];
       const sorted = sort(array2)("simpleProperty");
@@ -124,6 +127,20 @@ describe("Checks common js functions", () => {
       expect(sorted).toEqual(array1);
       expect(sortedReverse).toEqual(array2);
     });
-
   });
+  describe (' simulatedAuthenticationCall ', () => {
+    it(' fails ', async () => {
+      const result = await simulatedAuthenticationCall("test")
+      .then(res=>res)
+      .catch(err=>{
+        expect(err).toEqual({ message: "User information not valid" });
+      })
+    })
+    it(' passes ', async () => {
+      const result = await simulatedAuthenticationCall({name: "david"})
+      .then(res=>{
+        expect(res).toEqual({ name: "david" });
+      })
+    })
+  })
 });
