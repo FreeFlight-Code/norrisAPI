@@ -1,8 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
-import { logout } from "../../redux/user";
 import renderer from "react-test-renderer";
-import HeaderDefault, { Header, Navlinks, mapStateToProps } from '../../components/Header';
+import { Header, Navlinks } from '../../components/Header';
 
 jest.mock('react-router-dom');
 

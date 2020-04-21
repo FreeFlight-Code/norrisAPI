@@ -23,7 +23,7 @@ export const userReducer = (state = defaultState, action) => {
   let newState = {...state};
   switch (action.type) {
     case LOG_IN: {
-      simulatedAuthenticationCall()
+      simulatedAuthenticationCall
         .then(() => {
           newState.loggedin = true;
         })

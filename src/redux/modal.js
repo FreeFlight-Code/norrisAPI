@@ -40,6 +40,12 @@ export const modalReducer = (state = defaultState, action) => {
       };
       break;
     }
+    case "LOG_IN": {
+      newState = {
+        show: true
+      };
+      break;
+    }
     default:
       // console.log("unknown input type to modalReducer... ", action.type);
       break;

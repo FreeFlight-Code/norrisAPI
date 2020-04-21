@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { removeModal, displayModal } from "../redux/modal";
+import { removeModal } from "../redux/modal";
 import { login } from "../redux/user";
 
 //#class components
@@ -15,6 +15,7 @@ export class LoginForm extends React.Component {
     };
     document.addEventListener("keyup", this.validateEmailAndPassword);
   }
+
   //#lifecycle method
   componentWillUnmount () {
     document.removeEventListener("keyup", this.validateEmailAndPassword);
@@ -28,13 +29,16 @@ export class LoginForm extends React.Component {
     const { email, password } = this.state;
     const submitButton = document.querySelector("button.submit");
     if (emailRegex.test(email) && passwordRegex.test(password)) {
+
       if (submitButton.className.indexOf("disabled") > 0) {
         submitButton.classList.remove("disabled");
       }
+      return true;
     } else {
       if (submitButton.className.indexOf("disabled") < 0) {
         submitButton.classList.add("disabled");
       }
+      return false;
     }
   };
 
@@ -49,18 +53,20 @@ export class LoginForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const {login, removeModal} = this.props;
     const { email, password } = this.state;
     const user = {email, password};
-    this.props.dispatch(displayModal());
-    this.props.dispatch(login(user));
-    this.setState({
-      email: "",
-      password: ""
-    });
-    //#settimeout #closure
-    setTimeout(() => {
-      this.props.dispatch(removeModal());
-    }, 3000);
+    if(this.validateEmailAndPassword()){
+      login(user);
+      this.setState({
+        email: "",
+        password: ""
+      });
+      //#settimeout #closure
+      setTimeout(() => {
+        removeModal();
+      }, 3000);
+    }
   }
   //#destructuring
   handleInputChange = ({ type, value }) => {
@@ -70,35 +76,39 @@ export class LoginForm extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     //#block scoped variable const
     const { email, password } = this.state;
 
     return (
       <form className="loginForm">
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input
-          onChange={e => this.handleInputChange(e.target)}
+          data-testid="email-input"
+          onChange={(e) => this.handleInputChange(e.target)}
           type="email"
           name="email"
           id="email"
           value={email}
         />
         <span className="passwordContainer">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            onChange={_ => this.togglePasswordvisibility()}
+            onChange={(_) => this.togglePasswordvisibility()}
             type="checkbox"
           />
         </span>
         <input
-          onChange={e => this.handleInputChange(e.target)}
+          data-testid="password-input"
+          onChange={(e) => this.handleInputChange(e.target)}
           type="password"
           name="password"
           id="password"
           value={password}
         />
         <button
-          onClick={e => this.handleSubmit(e)}
+          data-testid="submit-input"
+          onClick={(e) => this.handleSubmit(e)}
           className="submit blue glow disabled"
         >
           Submit
@@ -108,4 +118,11 @@ export class LoginForm extends React.Component {
   }
 }
 //#currying curried function
-export default connect()(LoginForm);
+const mapDispatchToProps = dispatch => {
+
+  return {
+    login: user => dispatch(login(user)),
+    removeModal: _ => dispatch(removeModal())
+  }
+}
+export default connect(null, mapDispatchToProps)(LoginForm);

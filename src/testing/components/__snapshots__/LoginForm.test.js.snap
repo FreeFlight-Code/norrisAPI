@@ -1,42 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Login Form 1`] = `
-<form
-  className="loginForm"
->
-  <label>
-    Email
-  </label>
-  <input
-    id="email"
-    name="email"
-    onChange={[Function]}
-    type="email"
-    value=""
-  />
-  <span
-    className="passwordContainer"
+exports[` Login Form   matches snapshot  1`] = `
+<DocumentFragment>
+  <form
+    class="loginForm"
   >
-    <label>
-      Password
+    <label
+      for="email"
+    >
+      Email
     </label>
     <input
-      onChange={[Function]}
-      type="checkbox"
+      data-testid="email-input"
+      id="email"
+      name="email"
+      type="email"
+      value=""
     />
-  </span>
-  <input
-    id="password"
-    name="password"
-    onChange={[Function]}
-    type="password"
-    value=""
-  />
-  <button
-    className="submit blue glow disabled"
-    onClick={[Function]}
-  >
-    Submit
-  </button>
-</form>
+    <span
+      class="passwordContainer"
+    >
+      <label
+        for="password"
+      >
+        Password
+      </label>
+      <input
+        type="checkbox"
+      />
+    </span>
+    <input
+      data-testid="password-input"
+      id="password"
+      name="password"
+      type="password"
+      value=""
+    />
+    <button
+      class="submit blue glow disabled"
+      data-testid="submit-input"
+    >
+      Submit
+    </button>
+  </form>
+</DocumentFragment>
 `;
