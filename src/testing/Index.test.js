@@ -15,18 +15,8 @@ import store from '../store';
 test("can render redux with defaults", () => {
   render(<App />);
 });
+// should add provider and store to app
 
-// test("can render redux with custom initial state", () => {
-//   render(<App />, {
-//     initialState: { count: 3 },
-//   });
-// });
-
-// test("can render redux with custom store", () => {
-//   // this is a silly store that can never be changed
-//   const customStore = createStore(() => ({ count: 1000 }));
-//   render(<App />, {
-//     customStore,
-//   });
+// should add redux to app
 
 // });

@@ -55,7 +55,7 @@ export function SearchResults({jokes}) {
     return jokes.map((joke, i) => {
       let shortJoke = truncString(joke.value, 50);
       return (
-        <div onClick={e => handleJokeClick(joke)} key={`joke-${i}`}>
+        <div onClick={e => handleJokeClick(joke)} key={`search-joke-${i}`}>
           {shortJoke}
         </div>
       );

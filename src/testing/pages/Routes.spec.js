@@ -35,4 +35,6 @@ describe (' Routes Page ', () => {
         	expect(tree).toMatchSnapshot();
 		})
 	})
+
+	// Can we test whether routes work?
 });

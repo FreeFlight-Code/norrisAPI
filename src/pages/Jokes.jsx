@@ -58,20 +58,20 @@ export class JokesPage extends React.Component {
 //#props for function
 export function List({history}) {
   if (history && history.length)
-    return history.map((el, i) => <Joke {...el} key={`joke-history-${i}`} />);
+    return history.map((el, i) => <Joke {...el} index={i} key={i}/>);
   else return null;
 }
 // individual jokes
-export function Joke({value, categories, viewed_at}) {
+export function Joke({value, categories, viewed_at, index}) {
   const category = categories.length ? categories[0] : "";
   //#date
   viewed_at = new Date(viewed_at).toLocaleTimeString();
   if (value){
     return (
-      <div className="joke">
+      <div key={`joke-history-${index}`} className="joke">
         <span>{value}</span>
         <span className="category">{category}</span>
-        <span>{viewed_at}</span>
+        <span className="viewed_at">{viewed_at}</span>
       </div>
     );
   } else return null;

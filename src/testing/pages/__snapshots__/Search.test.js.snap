@@ -1,6 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` The Search Page...  Results renders correctly 1`] = `null`;
+exports[` The Search Page...  Results renders correctly with jokes 1`] = `
+Array [
+  <div
+    onClick={[Function]}
+  >
+    Chuck Norris had to stop washing his clothes in...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    'Tsunami' is japanese for 'Chuck Norris san'...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    When Chuck Norris takes a piss the world shiver...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    During the Japan Tsunami a UFO was spotted flyi...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    The real reason of the tsunami was because Chuc...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    When Chuck Norris shoots his cum-load this is r...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    The reason why Japan has too many disasters lik...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    When Chuck Norris dropped out of kindergarten, ...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    Little-known fact: Chuck Norris is the most fam...
+  </div>,
+  <div
+    onClick={[Function]}
+  >
+    When Chuck Norris hears a Tsunami warning, he g...
+  </div>,
+]
+`;
+
+exports[` The Search Page...  Results renders correctly without jokes 1`] = `null`;
 
 exports[` The Search Page...  renders correctly 1`] = `
 <div

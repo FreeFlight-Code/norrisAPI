@@ -12,7 +12,9 @@ exports[` The Jokes Page...  joke renders correctly 1`] = `
   >
     turtle
   </span>
-  <span>
+  <span
+    className="viewed_at"
+  >
     1:30:00 AM
   </span>
 </div>
@@ -31,7 +33,9 @@ Array [
     >
       turtle
     </span>
-    <span>
+    <span
+      className="viewed_at"
+    >
       1:30:00 AM
     </span>
   </div>,
@@ -46,7 +50,9 @@ Array [
     >
       apple
     </span>
-    <span>
+    <span
+      className="viewed_at"
+    >
       2:30:00 PM
     </span>
   </div>,
@@ -61,7 +67,9 @@ Array [
     >
       water
     </span>
-    <span>
+    <span
+      className="viewed_at"
+    >
       10:30:00 AM
     </span>
   </div>,
@@ -76,7 +84,9 @@ Array [
     >
       giraffe
     </span>
-    <span>
+    <span
+      className="viewed_at"
+    >
       4:30:00 AM
     </span>
   </div>,
@@ -91,7 +101,9 @@ Array [
     >
       bear
     </span>
-    <span>
+    <span
+      className="viewed_at"
+    >
       2:30:00 AM
     </span>
   </div>,

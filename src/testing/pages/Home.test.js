@@ -9,4 +9,6 @@ describe (' The Home Page... ', () => {
 	const tree = renderer.create(< Home />).toJSON();
 	expect(tree).toMatchSnapshot();
 	});
+	//Does homepage render Login component
 })
+
